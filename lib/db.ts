@@ -23,6 +23,15 @@ export async function logChatInteraction(data: {
   responseTime: number;
   success: boolean;
   error?: string;
+  // Legal compliance metadata
+  ip_address?: string;
+  ip_hash?: string;
+  user_agent?: string;
+  country?: string;
+  city?: string;
+  region?: string;
+  referrer?: string;
+  request_id?: string;
 }) {
   try {
     const sql = getDb();
@@ -39,6 +48,14 @@ export async function logChatInteraction(data: {
         response_time_ms,
         success,
         error,
+        ip_address,
+        ip_hash,
+        user_agent,
+        country,
+        city,
+        region,
+        referrer,
+        request_id,
         created_at
       ) VALUES (
         ${data.userMessage},
@@ -50,6 +67,14 @@ export async function logChatInteraction(data: {
         ${data.responseTime},
         ${data.success},
         ${data.error || null},
+        ${data.ip_address || null},
+        ${data.ip_hash || null},
+        ${data.user_agent || null},
+        ${data.country || null},
+        ${data.city || null},
+        ${data.region || null},
+        ${data.referrer || null},
+        ${data.request_id || null},
         NOW()
       )
     `;
@@ -72,6 +97,15 @@ export async function logImageGeneration(data: {
   totalTime: number;
   successCount: number;
   failureCount: number;
+  // Legal compliance metadata
+  ip_address?: string;
+  ip_hash?: string;
+  user_agent?: string;
+  country?: string;
+  city?: string;
+  region?: string;
+  referrer?: string;
+  request_id?: string;
 }) {
   try {
     const sql = getDb();
@@ -84,6 +118,14 @@ export async function logImageGeneration(data: {
         total_time_ms,
         success_count,
         failure_count,
+        ip_address,
+        ip_hash,
+        user_agent,
+        country,
+        city,
+        region,
+        referrer,
+        request_id,
         created_at
       ) VALUES (
         ${JSON.stringify(data.prompts)},
@@ -91,6 +133,14 @@ export async function logImageGeneration(data: {
         ${data.totalTime},
         ${data.successCount},
         ${data.failureCount},
+        ${data.ip_address || null},
+        ${data.ip_hash || null},
+        ${data.user_agent || null},
+        ${data.country || null},
+        ${data.city || null},
+        ${data.region || null},
+        ${data.referrer || null},
+        ${data.request_id || null},
         NOW()
       )
     `;

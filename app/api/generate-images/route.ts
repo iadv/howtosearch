@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenAI } from '@google/genai';
 import { logImageGeneration } from '@/lib/db';
+import { getRequestMetadata, formatMetadataForDb } from '@/lib/request-logger';
 
 export const runtime = 'edge';
 
 export async function POST(req: NextRequest) {
   const startTime = Date.now();
+  
+  // Capture request metadata for legal compliance
+  const requestMetadata = await getRequestMetadata(req);
+  const metadataForDb = formatMetadataForDb(requestMetadata);
   
   try {
     const { prompts } = await req.json();
@@ -139,6 +144,7 @@ export async function POST(req: NextRequest) {
         totalTime,
         successCount,
         failureCount,
+        ...metadataForDb,
       });
     } catch (logError) {
       console.error('Failed to log to database (non-critical):', logError);
@@ -157,6 +163,7 @@ export async function POST(req: NextRequest) {
         totalTime,
         successCount: 0,
         failureCount: 0,
+        ...metadataForDb,
       });
     } catch (logError) {
       console.error('Failed to log error to database (non-critical):', logError);

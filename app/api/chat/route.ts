@@ -2,12 +2,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
 import { logChatInteraction } from '@/lib/db';
 import { checkSafety, getSafetyMessage, logSafetyViolation } from '@/lib/safety-filter';
+import { getRequestMetadata, formatMetadataForDb } from '@/lib/request-logger';
 
 export const runtime = 'edge';
 
 export async function POST(req: NextRequest) {
   const startTime = Date.now();
   let userMessage = '';
+  
+  // Capture request metadata for legal compliance
+  const requestMetadata = await getRequestMetadata(req);
+  const metadataForDb = formatMetadataForDb(requestMetadata);
   
   try {
     const body = await req.json();
@@ -33,6 +38,7 @@ export async function POST(req: NextRequest) {
           responseTime,
           success: true,
           error: `Blocked: ${safetyCheck.category}`,
+          ...metadataForDb,
         });
       } catch (logError) {
         console.error('Failed to log safety block (non-critical):', logError);
@@ -191,6 +197,7 @@ Guidelines:
         model: 'claude-3-5-haiku-20241022',
         responseTime,
         success: true,
+        ...metadataForDb,
       });
     } catch (logError) {
       console.error('Failed to log to database (non-critical):', logError);
@@ -212,6 +219,7 @@ Guidelines:
         responseTime,
         success: false,
         error: error instanceof Error ? error.message : 'Unknown error',
+        ...metadataForDb,
       });
     } catch (logError) {
       console.error('Failed to log error to database (non-critical):', logError);
