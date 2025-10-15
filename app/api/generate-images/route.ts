@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenAI } from '@google/genai';
 import { logImageGeneration } from '@/lib/db';
 
+export const runtime = 'edge';
+
 export async function POST(req: NextRequest) {
   const startTime = Date.now();
   
@@ -124,33 +126,41 @@ export async function POST(req: NextRequest) {
     
     console.log(`🎉 Image generation complete: ${successCount}/${images.length} successful`);
 
-    // Log to database
-    await logImageGeneration({
-      prompts,
-      results: images.map(img => ({
-        prompt: img.prompt,
-        success: img.success,
-        imageSize: img.imageUrl ? img.imageUrl.length : undefined,
-        error: img.error,
-      })),
-      totalTime,
-      successCount,
-      failureCount,
-    });
+    // Log to database (non-blocking, don't let it fail the request)
+    try {
+      await logImageGeneration({
+        prompts,
+        results: images.map(img => ({
+          prompt: img.prompt,
+          success: img.success,
+          imageSize: img.imageUrl ? img.imageUrl.length : undefined,
+          error: img.error,
+        })),
+        totalTime,
+        successCount,
+        failureCount,
+      });
+    } catch (logError) {
+      console.error('Failed to log to database (non-critical):', logError);
+    }
 
     return NextResponse.json({ images });
   } catch (error) {
     console.error('❌ Error in image generation endpoint:', error);
     
-    // Log error to database
-    const totalTime = Date.now() - startTime;
-    await logImageGeneration({
-      prompts: [],
-      results: [],
-      totalTime,
-      successCount: 0,
-      failureCount: 0,
-    });
+    // Log error to database (non-blocking)
+    try {
+      const totalTime = Date.now() - startTime;
+      await logImageGeneration({
+        prompts: [],
+        results: [],
+        totalTime,
+        successCount: 0,
+        failureCount: 0,
+      });
+    } catch (logError) {
+      console.error('Failed to log error to database (non-critical):', logError);
+    }
     
     return NextResponse.json(
       { error: 'Failed to generate images' },

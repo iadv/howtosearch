@@ -145,35 +145,43 @@ Guidelines:
       };
     }
 
-    // Log the interaction to database
-    const responseTime = Date.now() - startTime;
-    await logChatInteraction({
-      userMessage,
-      assistantResponse: parsedResponse.response,
-      needsImages: parsedResponse.needsImages,
-      imageCount: parsedResponse.imageCount,
-      imagePrompts: parsedResponse.imagePrompts,
-      model: 'claude-3-5-haiku-20241022',
-      responseTime,
-      success: true,
-    });
+    // Log the interaction to database (non-blocking)
+    try {
+      const responseTime = Date.now() - startTime;
+      await logChatInteraction({
+        userMessage,
+        assistantResponse: parsedResponse.response,
+        needsImages: parsedResponse.needsImages,
+        imageCount: parsedResponse.imageCount,
+        imagePrompts: parsedResponse.imagePrompts,
+        model: 'claude-3-5-haiku-20241022',
+        responseTime,
+        success: true,
+      });
+    } catch (logError) {
+      console.error('Failed to log to database (non-critical):', logError);
+    }
 
     return NextResponse.json(parsedResponse);
   } catch (error) {
     console.error('Error calling Claude API:', error);
     
-    // Log the error to database
-    const responseTime = Date.now() - startTime;
-    await logChatInteraction({
-      userMessage,
-      assistantResponse: '',
-      needsImages: false,
-      imageCount: 0,
-      model: 'claude-3-5-haiku-20241022',
-      responseTime,
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error',
-    });
+    // Log the error to database (non-blocking)
+    try {
+      const responseTime = Date.now() - startTime;
+      await logChatInteraction({
+        userMessage,
+        assistantResponse: '',
+        needsImages: false,
+        imageCount: 0,
+        model: 'claude-3-5-haiku-20241022',
+        responseTime,
+        success: false,
+        error: error instanceof Error ? error.message : 'Unknown error',
+      });
+    } catch (logError) {
+      console.error('Failed to log error to database (non-critical):', logError);
+    }
     
     return NextResponse.json(
       { error: 'Failed to get response from Claude' },
