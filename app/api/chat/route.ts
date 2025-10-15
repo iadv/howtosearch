@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
 import { logChatInteraction } from '@/lib/db';
+import { checkSafety, getSafetyMessage, logSafetyViolation } from '@/lib/safety-filter';
 
 export const runtime = 'edge';
 
@@ -9,6 +10,43 @@ export async function POST(req: NextRequest) {
   let userMessage = '';
   
   try {
+    const body = await req.json();
+    userMessage = body.userMessage;
+    const messages = body.messages;
+
+    // Safety check - Filter harmful content
+    const safetyCheck = checkSafety(userMessage);
+    
+    if (!safetyCheck.isSafe) {
+      // Log the violation for monitoring
+      logSafetyViolation(userMessage, safetyCheck);
+      
+      // Log to database
+      try {
+        const responseTime = Date.now() - startTime;
+        await logChatInteraction({
+          userMessage,
+          assistantResponse: getSafetyMessage(safetyCheck.category),
+          needsImages: false,
+          imageCount: 0,
+          model: 'safety-filter',
+          responseTime,
+          success: true,
+          error: `Blocked: ${safetyCheck.category}`,
+        });
+      } catch (logError) {
+        console.error('Failed to log safety block (non-critical):', logError);
+      }
+      
+      // Return safety message (don't generate images)
+      return NextResponse.json({
+        response: getSafetyMessage(safetyCheck.category),
+        needsImages: false,
+        imageCount: 0,
+        imagePrompts: [],
+      });
+    }
+
     // Initialize Anthropic client inside the function to ensure env vars are loaded
     const apiKey = process.env.CLAUDE_API_KEY;
     
@@ -23,10 +61,6 @@ export async function POST(req: NextRequest) {
     const anthropic = new Anthropic({
       apiKey: apiKey,
     });
-
-    const body = await req.json();
-    userMessage = body.userMessage;
-    const messages = body.messages;
 
     // System prompt to help Claude understand the task
     const systemPrompt = `You are a helpful "How To" assistant. When users ask how to do something, provide clear, step-by-step instructions.
