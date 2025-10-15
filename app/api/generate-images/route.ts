@@ -44,6 +44,17 @@ export async function POST(req: NextRequest) {
         // Extract image from response
         if (response.candidates && response.candidates[0]) {
           const candidate = response.candidates[0];
+          
+          if (!candidate.content || !candidate.content.parts) {
+            console.log(`⚠️ No content or parts in response for image ${index + 1}`);
+            return {
+              prompt,
+              imageUrl: null,
+              success: false,
+              error: 'No content in response',
+            };
+          }
+          
           const parts = candidate.content.parts;
           
           // Debug: Log response structure
@@ -61,7 +72,7 @@ export async function POST(req: NextRequest) {
           });
           
           for (const part of parts) {
-            if (part.inlineData) {
+            if (part.inlineData && part.inlineData.data) {
               // Image found! Convert to data URL
               const imageData = part.inlineData.data;
               const mimeType = part.inlineData.mimeType || 'image/png';
