@@ -1,0 +1,62 @@
+# Project: How To Search - AI-Powered Visual Guide
+
+## Tech Stack
+- Next.js 14 (App Router)
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Framer Motion
+- Claude AI (Anthropic)
+- Gemini Imagen (Google)
+
+## Code Style
+- Use TypeScript for all files
+- Follow Next.js 14 best practices
+- Use functional components with hooks
+- Prefer const over let
+- Use meaningful variable names
+- Add comments for complex logic
+
+## Component Guidelines
+- Keep components focused and single-purpose
+- Use composition over inheritance
+- Extract reusable logic into custom hooks
+- Props should be typed with interfaces
+- Use React.FC or explicit return types
+
+## API Routes
+- Use Edge runtime when possible
+- Proper error handling with try-catch
+- Return appropriate HTTP status codes
+- Validate input data
+- Use environment variables for secrets
+
+## Styling
+- Use Tailwind CSS utility classes
+- Follow shadcn/ui patterns
+- Use CSS variables for theming
+- Prefer inline styles only for dynamic values
+- Keep animations smooth and purposeful
+
+## File Organization
+- Group related files together
+- Use index files for cleaner imports
+- Keep components in /components
+- API routes in /app/api
+- Utilities in /lib
+
+## Best Practices
+- Always handle loading and error states
+- Optimize images with Next.js Image component
+- Use Server Components when possible
+- Client Components only when needed
+- Implement proper TypeScript types
+- Write self-documenting code
+
+## AI Integration
+- Handle API failures gracefully
+- Implement retry logic for transient errors
+- Cache responses when appropriate
+- Monitor API usage and costs
+- Provide fallbacks for degraded service
+
