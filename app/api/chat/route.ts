@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
+import { logChatInteraction } from '@/lib/db';
 
 export const runtime = 'edge';
 
 export async function POST(req: NextRequest) {
+  const startTime = Date.now();
+  let userMessage = '';
+  
   try {
     // Initialize Anthropic client inside the function to ensure env vars are loaded
     const apiKey = process.env.CLAUDE_API_KEY;
@@ -20,7 +24,9 @@ export async function POST(req: NextRequest) {
       apiKey: apiKey,
     });
 
-    const { messages, userMessage } = await req.json();
+    const body = await req.json();
+    userMessage = body.userMessage;
+    const messages = body.messages;
 
     // System prompt to help Claude understand the task
     const systemPrompt = `You are a helpful "How To" assistant. When users ask how to do something, provide clear, step-by-step instructions.
@@ -139,9 +145,36 @@ Guidelines:
       };
     }
 
+    // Log the interaction to database
+    const responseTime = Date.now() - startTime;
+    await logChatInteraction({
+      userMessage,
+      assistantResponse: parsedResponse.response,
+      needsImages: parsedResponse.needsImages,
+      imageCount: parsedResponse.imageCount,
+      imagePrompts: parsedResponse.imagePrompts,
+      model: 'claude-3-5-haiku-20241022',
+      responseTime,
+      success: true,
+    });
+
     return NextResponse.json(parsedResponse);
   } catch (error) {
     console.error('Error calling Claude API:', error);
+    
+    // Log the error to database
+    const responseTime = Date.now() - startTime;
+    await logChatInteraction({
+      userMessage,
+      assistantResponse: '',
+      needsImages: false,
+      imageCount: 0,
+      model: 'claude-3-5-haiku-20241022',
+      responseTime,
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
+    
     return NextResponse.json(
       { error: 'Failed to get response from Claude' },
       { status: 500 }

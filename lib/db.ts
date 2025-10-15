@@ -1,0 +1,159 @@
+import { neon } from '@neondatabase/serverless';
+
+// Initialize the database connection
+export function getDb() {
+  const databaseUrl = process.env.DATABASE_URL;
+  
+  if (!databaseUrl) {
+    console.error('DATABASE_URL is not set');
+    return null;
+  }
+  
+  return neon(databaseUrl);
+}
+
+// Log a chat interaction
+export async function logChatInteraction(data: {
+  userMessage: string;
+  assistantResponse: string;
+  needsImages: boolean;
+  imageCount: number;
+  imagePrompts?: string[];
+  model: string;
+  responseTime: number;
+  success: boolean;
+  error?: string;
+}) {
+  try {
+    const sql = getDb();
+    if (!sql) return;
+
+    await sql`
+      INSERT INTO chat_logs (
+        user_message,
+        assistant_response,
+        needs_images,
+        image_count,
+        image_prompts,
+        model,
+        response_time_ms,
+        success,
+        error,
+        created_at
+      ) VALUES (
+        ${data.userMessage},
+        ${data.assistantResponse},
+        ${data.needsImages},
+        ${data.imageCount},
+        ${JSON.stringify(data.imagePrompts || [])},
+        ${data.model},
+        ${data.responseTime},
+        ${data.success},
+        ${data.error || null},
+        NOW()
+      )
+    `;
+    
+    console.log('✅ Chat interaction logged to database');
+  } catch (error) {
+    console.error('❌ Failed to log chat interaction:', error);
+  }
+}
+
+// Log image generation
+export async function logImageGeneration(data: {
+  prompts: string[];
+  results: Array<{
+    prompt: string;
+    success: boolean;
+    imageSize?: number;
+    error?: string;
+  }>;
+  totalTime: number;
+  successCount: number;
+  failureCount: number;
+}) {
+  try {
+    const sql = getDb();
+    if (!sql) return;
+
+    await sql`
+      INSERT INTO image_logs (
+        prompts,
+        results,
+        total_time_ms,
+        success_count,
+        failure_count,
+        created_at
+      ) VALUES (
+        ${JSON.stringify(data.prompts)},
+        ${JSON.stringify(data.results)},
+        ${data.totalTime},
+        ${data.successCount},
+        ${data.failureCount},
+        NOW()
+      )
+    `;
+    
+    console.log('✅ Image generation logged to database');
+  } catch (error) {
+    console.error('❌ Failed to log image generation:', error);
+  }
+}
+
+// Get recent chat logs
+export async function getRecentChats(limit: number = 50) {
+  try {
+    const sql = getDb();
+    if (!sql) return [];
+
+    const result = await sql`
+      SELECT * FROM chat_logs
+      ORDER BY created_at DESC
+      LIMIT ${limit}
+    `;
+    
+    return result;
+  } catch (error) {
+    console.error('❌ Failed to fetch chat logs:', error);
+    return [];
+  }
+}
+
+// Get analytics
+export async function getAnalytics() {
+  try {
+    const sql = getDb();
+    if (!sql) return null;
+
+    const [stats] = await sql`
+      SELECT 
+        COUNT(*) as total_chats,
+        COUNT(*) FILTER (WHERE success = true) as successful_chats,
+        COUNT(*) FILTER (WHERE needs_images = true) as chats_with_images,
+        AVG(response_time_ms) as avg_response_time,
+        AVG(image_count) as avg_image_count
+      FROM chat_logs
+      WHERE created_at > NOW() - INTERVAL '7 days'
+    `;
+    
+    const [imageStats] = await sql`
+      SELECT 
+        COUNT(*) as total_generations,
+        SUM(success_count) as total_images_generated,
+        SUM(failure_count) as total_failures,
+        AVG(total_time_ms) as avg_generation_time
+      FROM image_logs
+      WHERE created_at > NOW() - INTERVAL '7 days'
+    `;
+    
+    return {
+      chat: stats,
+      images: imageStats,
+    };
+  } catch (error) {
+    console.error('❌ Failed to fetch analytics:', error);
+    return null;
+  }
+}
+

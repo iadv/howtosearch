@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenAI } from '@google/genai';
+import { logImageGeneration } from '@/lib/db';
 
 export async function POST(req: NextRequest) {
+  const startTime = Date.now();
+  
   try {
     const { prompts } = await req.json();
 
@@ -114,13 +117,41 @@ export async function POST(req: NextRequest) {
 
     const images = await Promise.all(imagePromises);
     
-    // Log results
+    // Calculate metrics
+    const totalTime = Date.now() - startTime;
     const successCount = images.filter(img => img.success).length;
+    const failureCount = images.length - successCount;
+    
     console.log(`🎉 Image generation complete: ${successCount}/${images.length} successful`);
+
+    // Log to database
+    await logImageGeneration({
+      prompts,
+      results: images.map(img => ({
+        prompt: img.prompt,
+        success: img.success,
+        imageSize: img.imageUrl ? img.imageUrl.length : undefined,
+        error: img.error,
+      })),
+      totalTime,
+      successCount,
+      failureCount,
+    });
 
     return NextResponse.json({ images });
   } catch (error) {
     console.error('❌ Error in image generation endpoint:', error);
+    
+    // Log error to database
+    const totalTime = Date.now() - startTime;
+    await logImageGeneration({
+      prompts: [],
+      results: [],
+      totalTime,
+      successCount: 0,
+      failureCount: 0,
+    });
+    
     return NextResponse.json(
       { error: 'Failed to generate images' },
       { status: 500 }
