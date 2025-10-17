@@ -1,15 +1,22 @@
 import { neon } from '@neondatabase/serverless';
 
 // Initialize the database connection
+let _cachedSql: ReturnType<typeof neon> | null = null;
+
 export function getDb() {
+  if (_cachedSql) return _cachedSql;
+  
   const databaseUrl = process.env.DATABASE_URL;
   
   if (!databaseUrl) {
-    console.error('DATABASE_URL is not set');
+    console.error('🚨 CRITICAL: DATABASE_URL is not set - logging will FAIL');
+    console.error('🚨 Check your .env.local file and restart the server');
     return null;
   }
   
-  return neon(databaseUrl);
+  _cachedSql = neon(databaseUrl);
+  console.log('✅ Database connection initialized');
+  return _cachedSql;
 }
 
 // Log a chat interaction
@@ -35,7 +42,10 @@ export async function logChatInteraction(data: {
 }) {
   try {
     const sql = getDb();
-    if (!sql) return;
+    if (!sql) {
+      console.error('🚨 LOGGING SKIPPED: Database not configured');
+      return;
+    }
 
     await sql`
       INSERT INTO chat_logs (
@@ -109,7 +119,10 @@ export async function logImageGeneration(data: {
 }) {
   try {
     const sql = getDb();
-    if (!sql) return;
+    if (!sql) {
+      console.error('🚨 IMAGE LOGGING SKIPPED: Database not configured');
+      return;
+    }
 
     await sql`
       INSERT INTO image_logs (
