@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Clock, MapPin, Image as ImageIcon, Sparkles } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Clock, MapPin, Image as ImageIcon, Sparkles, ThumbsUp, ThumbsDown } from 'lucide-react';
 import NextImage from 'next/image';
 import { Card } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -16,6 +16,7 @@ interface Session {
   needsImages: boolean;
   imageCount: number;
   messageCount: number;
+  score: number;
   createdAt: string;
   location: string;
 }
@@ -28,9 +29,15 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
   const [isOpen, setIsOpen] = useState(false);
   const [sessions, setSessions] = useState<Session[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [userVotes, setUserVotes] = useState<Record<string, 'up' | 'down'>>({});
 
   useEffect(() => {
     fetchSessions();
+    // Load user votes from localStorage
+    const savedVotes = localStorage.getItem('userVotes');
+    if (savedVotes) {
+      setUserVotes(JSON.parse(savedVotes));
+    }
     // Refresh every 30 seconds
     const interval = setInterval(fetchSessions, 30000);
     return () => clearInterval(interval);
@@ -53,6 +60,56 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
       console.error('Failed to fetch sessions:', error);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleVote = async (sessionId: string, vote: 'up' | 'down', e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card click
+    
+    const currentVote = userVotes[sessionId];
+    let actualVote: 'up' | 'down' | null = null;
+    let scoreChange = 0;
+
+    // Determine the vote action
+    if (currentVote === vote) {
+      // Clicking same button - remove vote
+      actualVote = null;
+      scoreChange = vote === 'up' ? -1 : 1; // Undo previous vote
+    } else if (currentVote) {
+      // Switching vote - need to undo old and apply new
+      scoreChange = vote === 'up' ? 2 : -2; // +1 for new, -1 for removing old
+      actualVote = vote;
+    } else {
+      // First time voting
+      scoreChange = vote === 'up' ? 1 : -1;
+      actualVote = vote;
+    }
+
+    try {
+      const response = await fetch('/api/sessions/vote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionId, vote: actualVote || vote }),
+      });
+
+      if (response.ok) {
+        // Update local state optimistically
+        setSessions(prev => prev.map(s => 
+          s.id === sessionId ? { ...s, score: s.score + scoreChange } : s
+        ));
+
+        // Update user votes
+        const newVotes = { ...userVotes };
+        if (actualVote) {
+          newVotes[sessionId] = actualVote;
+        } else {
+          delete newVotes[sessionId];
+        }
+        setUserVotes(newVotes);
+        localStorage.setItem('userVotes', JSON.stringify(newVotes));
+      }
+    } catch (error) {
+      console.error('Failed to vote:', error);
     }
   };
 
@@ -209,7 +266,7 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
                             </p>
 
                             {/* Meta Info Bar */}
-                            <div className="flex items-center justify-between text-xs">
+                            <div className="flex items-center justify-between text-xs mb-2">
                               <div className="flex items-center gap-3">
                                 <span className="flex items-center gap-1 text-slate-400">
                                   <Clock className="w-3 h-3" />
@@ -228,6 +285,34 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
                                   <span className="truncate max-w-[100px]">{session.location}</span>
                                 </span>
                               )}
+                            </div>
+
+                            {/* Voting Bar */}
+                            <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                              <div className="flex items-center gap-2">
+                                <motion.button
+                                  whileHover={{ scale: 1.1 }}
+                                  whileTap={{ scale: 0.9 }}
+                                  onClick={(e) => handleVote(session.id, 'up', e)}
+                                  className="p-1 rounded-full hover:bg-green-50 transition-colors"
+                                >
+                                  <ThumbsUp className="w-4 h-4 text-green-600" />
+                                </motion.button>
+                                <span className="font-semibold text-slate-700 min-w-[2.5rem] text-center">
+                                  {session.score}
+                                </span>
+                                <motion.button
+                                  whileHover={{ scale: 1.1 }}
+                                  whileTap={{ scale: 0.9 }}
+                                  onClick={(e) => handleVote(session.id, 'down', e)}
+                                  className="p-1 rounded-full hover:bg-red-50 transition-colors"
+                                >
+                                  <ThumbsDown className="w-4 h-4 text-red-600" />
+                                </motion.button>
+                              </div>
+                              <span className="text-xs text-slate-400">
+                                {session.score >= 400 ? '🔥 Hot' : session.score >= 300 ? '👍 Good' : session.score >= 200 ? '✨ New' : '💡 Growing'}
+                              </span>
                             </div>
                           </div>
 

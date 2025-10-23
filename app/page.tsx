@@ -6,8 +6,10 @@ import ImageCarousel from '@/components/ImageCarousel';
 import SearchTicker from '@/components/SearchTicker';
 import SessionsSidebar from '@/components/SessionsSidebar';
 import SessionViewer from '@/components/SessionViewer';
+import SubmitSearchModal from '@/components/SubmitSearchModal';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Send } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface Session {
   id: string;
@@ -26,6 +28,9 @@ export default function Home() {
   const [isLoadingImages, setIsLoadingImages] = useState(false);
   const [hasStartedChat, setHasStartedChat] = useState(false);
   const [selectedSession, setSelectedSession] = useState<Session | null>(null);
+  const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
+  const [lastQuery, setLastQuery] = useState('');
+  const [lastResponse, setLastResponse] = useState('');
 
   const handleNewImages = (newImages: any[]) => {
     setIsLoadingImages(true);
@@ -41,8 +46,9 @@ export default function Home() {
   };
 
   const handleNewMessage = (userQuery: string, assistantResponse: string) => {
-    // History sidebar shows only curated examples, not user sessions
-    // No need to save user chats to database
+    // Store for potential submission
+    setLastQuery(userQuery);
+    setLastResponse(assistantResponse);
   };
 
   return (
@@ -53,6 +59,33 @@ export default function Home() {
       {/* Session Viewer Modal */}
       {selectedSession && (
         <SessionViewer session={selectedSession} onClose={() => setSelectedSession(null)} />
+      )}
+
+      {/* Submit Search Modal */}
+      <SubmitSearchModal
+        isOpen={isSubmitModalOpen}
+        onClose={() => setIsSubmitModalOpen(false)}
+        userQuery={lastQuery}
+        assistantResponse={lastResponse}
+        images={images}
+      />
+
+      {/* Floating Submit Button */}
+      {hasStartedChat && lastQuery && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.8, y: 20 }}
+          className="fixed bottom-24 right-6 z-40"
+        >
+          <Button
+            onClick={() => setIsSubmitModalOpen(true)}
+            className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-2xl shadow-emerald-500/30 rounded-full px-6 py-6 text-white font-semibold"
+          >
+            <Send className="w-5 h-5 mr-2" />
+            Submit Your Search
+          </Button>
+        </motion.div>
       )}
 
       <main className="h-screen w-full bg-gradient-to-br from-slate-50 via-violet-50 to-indigo-50 relative overflow-hidden flex flex-col">

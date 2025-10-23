@@ -11,7 +11,8 @@
     "db:compliance": "tsx scripts/add-compliance-fields.ts",
     "db:sessions": "tsx scripts/create-sessions-table.ts",
     "db:seed": "tsx scripts/seed-sessions.ts",
-    "db:seed-simple": "tsx scripts/simple-seed.ts"
+    "db:seed-simple": "tsx scripts/simple-seed.ts",
+    "db:add-features": "tsx scripts/add-voting-and-submissions.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^0.0.39",

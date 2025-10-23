@@ -32,6 +32,7 @@ export async function GET(req: NextRequest) {
         needs_images,
         image_count,
         message_count,
+        score,
         created_at,
         country,
         city
@@ -49,6 +50,7 @@ export async function GET(req: NextRequest) {
         needsImages: s.needs_images,
         imageCount: s.image_count,
         messageCount: s.message_count,
+        score: s.score || 250,
         createdAt: s.created_at,
         location: s.city && s.country ? `${s.city}, ${s.country}` : s.country || 'Unknown',
       })),
