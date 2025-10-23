@@ -14,11 +14,19 @@ function getDb() {
 
 export async function POST(req: NextRequest) {
   try {
-    const { sessionId, vote } = await req.json();
+    const { sessionId, scoreChange } = await req.json();
 
-    if (!sessionId || !vote || !['up', 'down'].includes(vote)) {
+    if (!sessionId || scoreChange === undefined) {
       return NextResponse.json(
-        { error: 'Invalid request. Provide sessionId and vote (up/down)' },
+        { error: 'Invalid request. Provide sessionId and scoreChange' },
+        { status: 400 }
+      );
+    }
+
+    // Validate score change is within acceptable range (-2 to +2)
+    if (scoreChange < -2 || scoreChange > 2) {
+      return NextResponse.json(
+        { error: 'Invalid score change. Must be between -2 and +2' },
         { status: 400 }
       );
     }
@@ -30,9 +38,6 @@ export async function POST(req: NextRequest) {
         { status: 500 }
       );
     }
-
-    // Update score: +1 for upvote, -1 for downvote
-    const scoreChange = vote === 'up' ? 1 : -1;
     
     const result = await sql`
       UPDATE sessions

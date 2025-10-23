@@ -86,16 +86,19 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
     }
 
     try {
+      // Send the calculated score change to backend
       const response = await fetch('/api/sessions/vote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sessionId, vote: actualVote || vote }),
+        body: JSON.stringify({ sessionId, scoreChange }),
       });
 
       if (response.ok) {
-        // Update local state optimistically
+        const data = await response.json();
+        
+        // Update local state with server-confirmed score
         setSessions(prev => prev.map(s => 
-          s.id === sessionId ? { ...s, score: s.score + scoreChange } : s
+          s.id === sessionId ? { ...s, score: data.newScore } : s
         ));
 
         // Update user votes
@@ -294,9 +297,17 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
                                   whileHover={{ scale: 1.1 }}
                                   whileTap={{ scale: 0.9 }}
                                   onClick={(e) => handleVote(session.id, 'up', e)}
-                                  className="p-1 rounded-full hover:bg-green-50 transition-colors"
+                                  className={`p-1 rounded-full transition-colors ${
+                                    userVotes[session.id] === 'up' 
+                                      ? 'bg-green-100 shadow-sm' 
+                                      : 'hover:bg-green-50'
+                                  }`}
                                 >
-                                  <ThumbsUp className="w-4 h-4 text-green-600" />
+                                  <ThumbsUp className={`w-4 h-4 ${
+                                    userVotes[session.id] === 'up' 
+                                      ? 'text-green-700 fill-green-700' 
+                                      : 'text-green-600'
+                                  }`} />
                                 </motion.button>
                                 <span className="font-semibold text-slate-700 min-w-[2.5rem] text-center">
                                   {session.score}
@@ -305,9 +316,17 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
                                   whileHover={{ scale: 1.1 }}
                                   whileTap={{ scale: 0.9 }}
                                   onClick={(e) => handleVote(session.id, 'down', e)}
-                                  className="p-1 rounded-full hover:bg-red-50 transition-colors"
+                                  className={`p-1 rounded-full transition-colors ${
+                                    userVotes[session.id] === 'down' 
+                                      ? 'bg-red-100 shadow-sm' 
+                                      : 'hover:bg-red-50'
+                                  }`}
                                 >
-                                  <ThumbsDown className="w-4 h-4 text-red-600" />
+                                  <ThumbsDown className={`w-4 h-4 ${
+                                    userVotes[session.id] === 'down' 
+                                      ? 'text-red-700 fill-red-700' 
+                                      : 'text-red-600'
+                                  }`} />
                                 </motion.button>
                               </div>
                               <span className="text-xs text-slate-400">
