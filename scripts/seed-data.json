@@ -1,49 +1,462 @@
 [
   {
     "question": "How does an airplane stay in the air?",
-    "response": "Airplanes stay in the air through a combination of four key forces: lift, weight, thrust, and drag. The wings are specially shaped (curved on top, flatter on bottom) to create lift - as air flows faster over the curved top surface, it creates lower pressure above the wing compared to below, pushing the plane upward. The engines provide thrust to move forward, while the plane's weight pulls it down and air resistance creates drag. When lift exceeds weight and thrust overcomes drag, the plane flies!",
+    "response": "Airplanes stay in the air through four key forces: lift, weight, thrust, and drag. The wings are specially shaped (curved on top, flatter on bottom) to create lift - as air flows faster over the curved top surface, it creates lower pressure above the wing compared to below, pushing the plane upward. When lift exceeds weight and thrust overcomes drag, the plane flies!",
     "images": [
-      "Diagram showing the four forces acting on an airplane: lift (upward arrow from wings), weight (downward arrow from center), thrust (forward arrow from engines), and drag (backward arrow)",
-      "Cross-section view of an airplane wing showing how air flows faster over the curved top surface, creating low pressure above and high pressure below",
-      "Illustration of an airplane in flight with colored arrows indicating airflow patterns around the wings and fuselage"
+      "Diagram showing the four forces acting on an airplane: lift (upward), weight (downward), thrust (forward), and drag (backward)",
+      "Cross-section view of an airplane wing showing airflow and pressure differences",
+      "Illustration of an airplane in flight with colored arrows indicating airflow patterns"
     ]
   },
   {
     "question": "How does Wi-Fi actually work?",
-    "response": "Wi-Fi works by converting data into radio waves and transmitting them through the air! Your router receives internet data through a cable, then converts it into radio waves using an antenna. These waves travel through the air at specific frequencies (usually 2.4GHz or 5GHz). Your device has a Wi-Fi adapter that receives these radio waves and converts them back into data. It's like an invisible highway of information floating all around you! The router constantly sends and receives these signals, allowing multiple devices to connect and communicate simultaneously.",
+    "response": "Wi-Fi converts data into radio waves and transmits them through the air! Your router receives internet data through a cable, converts it into radio waves using an antenna, and broadcasts at specific frequencies (2.4GHz or 5GHz). Your device's Wi-Fi adapter receives these waves and converts them back into data. It's like an invisible highway of information floating around you!",
     "images": [
-      "Simple diagram of a Wi-Fi router sending radio waves (shown as curved lines) to a laptop, smartphone, and tablet",
-      "Visualization of radio wave frequencies showing the difference between 2.4GHz and 5GHz bands with wave patterns",
-      "Cross-section view of a home with Wi-Fi signal strength zones shown in different colors from router to various rooms"
+      "Diagram of a Wi-Fi router sending radio waves to laptop, smartphone, and tablet",
+      "Visualization of radio wave frequencies showing 2.4GHz and 5GHz bands",
+      "Cross-section view of a home with Wi-Fi signal strength zones in different colors"
     ]
   },
   {
     "question": "Why is the sky blue?",
-    "response": "The sky appears blue because of how sunlight interacts with Earth's atmosphere! Sunlight looks white, but it's actually made up of all colors of the rainbow. As sunlight enters our atmosphere, it collides with tiny gas molecules. Blue light has a shorter wavelength and gets scattered in all directions much more than other colors (a process called Rayleigh scattering). This scattered blue light comes at our eyes from all parts of the sky, making it appear blue. At sunset, sunlight travels through more atmosphere, scattering away most blue light, which is why we see reds and oranges!",
+    "response": "The sky appears blue because of how sunlight interacts with Earth's atmosphere! Sunlight is made of all colors, but blue light has a shorter wavelength and gets scattered in all directions by air molecules (Rayleigh scattering). This scattered blue light comes at our eyes from all parts of the sky. At sunset, light travels through more atmosphere, scattering away the blue and leaving reds and oranges!",
     "images": [
-      "Diagram showing white sunlight entering Earth's atmosphere and blue light scattering in all directions while other colors pass through more directly",
-      "Illustration of light wavelengths with blue having shorter waves and red having longer waves",
-      "Visual comparison of daytime blue sky versus sunset/sunrise with orange-red colors, showing the path of light through atmosphere"
+      "Diagram showing white sunlight entering atmosphere and blue light scattering in all directions",
+      "Illustration of light wavelengths with blue having shorter waves than red",
+      "Comparison of daytime blue sky versus sunset with orange-red colors"
     ]
   },
   {
-    "question": "How to remove coffee stains from clothes?",
-    "response": "To remove coffee stains, act fast! First, blot (don't rub) the stain with a clean cloth to absorb excess coffee. Rinse the back of the stain with cold water to push the coffee out. Mix one tablespoon of liquid dish soap, one tablespoon of white vinegar, and two cups of warm water. Apply this solution to the stain with a clean cloth, blotting from the outside in. Rinse with cold water. If the stain persists, apply a stain remover or rub with liquid laundry detergent, then wash as usual. For old stains, soak in cold water mixed with enzyme laundry detergent for 30 minutes before washing.",
+    "question": "How do touchscreens sense my finger?",
+    "response": "Most touchscreens use capacitive technology - they detect your finger's electrical properties! The screen has a layer that stores electrical charges. When your finger touches it, you disrupt the electrostatic field at that point. Sensors detect this change and calculate exactly where you touched. This happens in milliseconds! That's why touchscreens don't work well with regular gloves.",
     "images": [
-      "Step 1: Hand blotting fresh coffee spill on white shirt with paper towel",
-      "Step 2: Mixing solution of dish soap, vinegar and water in a bowl with measuring spoons nearby",
-      "Step 3: Applying solution to stain with cloth, showing blotting motion from outside to center",
-      "Before and after comparison showing coffee-stained shirt versus clean shirt after treatment"
+      "Cross-section diagram of capacitive touchscreen showing layers: glass, electrode layer, LCD display",
+      "Illustration of finger touching screen with electrical field lines disrupted",
+      "Grid pattern showing how screen detects exact X,Y coordinates of touch"
+    ]
+  },
+  {
+    "question": "How does a refrigerator keep things cold?",
+    "response": "A refrigerator removes heat from inside and releases it outside - it's a heat pump! Refrigerant liquid flows through coils, evaporates and becomes very cold, absorbs heat from your food, then gets compressed and releases that heat outside the fridge. The cycle repeats continuously. It's not creating cold - it's actively removing heat!",
+    "images": [
+      "Diagram of refrigeration cycle: compressor, condenser coils, expansion valve, evaporator coils",
+      "Illustration showing hot air released from back while cold air circulates inside",
+      "Step-by-step visual of refrigerant changing from liquid to gas with temperature indicators"
     ]
   },
   {
     "question": "How does solar power become electricity?",
-    "response": "Solar panels convert sunlight directly into electricity through the photovoltaic effect! Each panel is made of many solar cells containing silicon (a semiconductor). When sunlight hits the cell, photons (light particles) knock electrons loose from the silicon atoms. The cell has an electric field that pushes these freed electrons in one direction, creating an electrical current. This produces DC (direct current) electricity, which then flows to an inverter that converts it to AC (alternating current) electricity that your home can use. It's like millions of tiny batteries all working together when exposed to light!",
+    "response": "Solar panels convert sunlight directly into electricity through the photovoltaic effect! Each panel contains silicon cells. When sunlight hits them, photons knock electrons loose from silicon atoms. An electric field pushes these electrons in one direction, creating electrical current (DC). An inverter then converts this to AC electricity your home can use. It's like millions of tiny batteries working together!",
     "images": [
-      "Diagram of a solar cell showing sunlight photons hitting silicon atoms and freeing electrons",
-      "Illustration of a complete solar power system: panels on roof, wires to inverter, inverter converting DC to AC, connection to home electrical panel",
-      "Close-up cross-section of solar panel layers showing silicon cells, protective glass, and backing materials"
+      "Diagram of solar cell showing photons hitting silicon and freeing electrons",
+      "Complete solar system: panels on roof, wires to inverter, connection to home electrical panel",
+      "Close-up cross-section of solar panel layers showing silicon cells and protective glass"
+    ]
+  },
+  {
+    "question": "How does a car engine work?",
+    "response": "Most car engines use a 4-stroke cycle: intake, compression, power, exhaust. Air and fuel mix enters the cylinder (intake), the piston compresses it (compression), a spark plug ignites it causing an explosion that pushes the piston down (power), and finally exhaust gases are expelled (exhaust). This cycle repeats thousands of times per minute, turning the crankshaft which ultimately turns your wheels!",
+    "images": [
+      "Diagram of 4-stroke engine cycle showing piston movement in each stage",
+      "Cross-section of engine showing pistons, cylinders, crankshaft, and valves",
+      "Animation sequence of fuel injection and spark plug ignition"
+    ]
+  },
+  {
+    "question": "How do noise-canceling headphones block sound?",
+    "response": "Noise-canceling headphones use 'active noise cancellation' - they create opposite sound waves to cancel out noise! Tiny microphones on the outside detect ambient sound, a chip analyzes those sound waves, then the headphones produce inverse waves (peaks become valleys, valleys become peaks). When these opposite waves meet, they cancel each other out. It works best on constant sounds like airplane hum or AC noise.",
+    "images": [
+      "Diagram showing sound wave meeting its inverse wave resulting in silence",
+      "Illustration of headphone with external microphone detecting ambient noise",
+      "Visual comparison of sound waves: original noise, inverse wave, and canceled result"
+    ]
+  },
+  {
+    "question": "How do self-driving cars see the road?",
+    "response": "Self-driving cars use multiple sensor systems working together! Cameras see lane lines and traffic signs, radar detects distance and speed of objects, LiDAR shoots laser beams to create a 3D map of surroundings, and GPS/maps provide location data. AI software processes all this information in real-time to understand the environment and make driving decisions - like having eyes all around the car!",
+    "images": [
+      "Diagram of self-driving car showing placement of cameras, radar, LiDAR sensors",
+      "Visualization of LiDAR creating a 3D point cloud map of the environment",
+      "Screen showing what the AI sees: detected lanes, cars, pedestrians, traffic signs"
+    ]
+  },
+  {
+    "question": "How does a washing machine clean clothes?",
+    "response": "Washing machines clean through mechanical action and chemistry! Water and detergent form a solution where detergent molecules have two ends - one attracts water, the other attracts dirt and oil. As the drum rotates, it creates friction and agitation, helping detergent molecules surround and lift dirt particles. The spinning motion then pulls dirty water through the fabric and drains it away, leaving clean clothes!",
+    "images": [
+      "Diagram showing detergent molecule with water-loving and dirt-loving ends",
+      "Cross-section of washing machine drum showing water flow and agitation patterns",
+      "Step-by-step illustration: dirty clothes, agitation with detergent, rinsing, spinning"
+    ]
+  },
+  {
+    "question": "How do magnets attract metal?",
+    "response": "Magnets create invisible magnetic fields from the alignment of electrons spinning in atoms. In magnetic materials like iron, many atoms' electrons spin in the same direction, creating a strong combined field. Opposite poles (north and south) attract because their field lines flow together smoothly, while same poles repel because field lines push against each other. Not all metals are magnetic - only those with unpaired electrons that can align, like iron, nickel, and cobalt!",
+    "images": [
+      "Diagram showing magnetic field lines flowing from north to south pole of a bar magnet",
+      "Illustration of aligned vs random electron spins in magnetic vs non-magnetic materials",
+      "Visual showing attraction between opposite poles and repulsion between same poles"
+    ]
+  },
+  {
+    "question": "Why do onions make us cry?",
+    "response": "Onions release a gas called syn-propanethial-S-oxide when cut, which is their defense mechanism! When you slice an onion, you break cells that release enzymes. These enzymes convert sulfur compounds in the onion into a volatile gas. When this gas reaches your eyes, it reacts with water to form sulfuric acid, irritating your eyes. Your eyes produce tears to wash away the irritant. It's the onion's way of fighting back!",
+    "images": [
+      "Diagram showing onion cells releasing enzymes when cut with a knife",
+      "Chemical reaction illustration: sulfur compounds converting to irritating gas",
+      "Cross-section of human eye showing gas molecules triggering tear response"
+    ]
+  },
+  {
+    "question": "Why do cats purr?",
+    "response": "Cats purr by vibrating muscles in their larynx (voice box) at 25-150 vibrations per second as they breathe! While we often associate purring with contentment, cats also purr when stressed, injured, or giving birth. Scientists believe purring may have a self-healing function - the frequency promotes bone and tissue healing. It's also how kittens communicate with their mother and how adult cats show they're non-threatening to others.",
+    "images": [
+      "Anatomical diagram of cat showing larynx muscles that create purring vibration",
+      "Illustration of sound wave frequency graph showing purr vibration at 25-150 Hz",
+      "Visual showing different purring scenarios: content cat, stressed cat, mother with kittens"
+    ]
+  },
+  {
+    "question": "How does a rainbow form?",
+    "response": "Rainbows form when sunlight passes through water droplets in the air! White sunlight enters a raindrop, slows down and bends (refraction). Different colors bend at different angles, separating the light. The light reflects off the back of the droplet, then bends again as it exits. Red bends the least (appears on top), violet bends the most (appears on bottom). You see a rainbow when the sun is behind you and rain is in front!",
+    "images": [
+      "Diagram showing sunlight entering water droplet, refracting, reflecting, and separating into colors",
+      "Illustration of the path of red vs violet light through a raindrop showing different angles",
+      "Visual showing observer position relative to sun and rain for seeing a rainbow"
+    ]
+  },
+  {
+    "question": "How do bridges stay standing?",
+    "response": "Bridges distribute weight through careful engineering! Suspension bridges hang the roadway from strong cables anchored at both ends - tension in the cables supports the weight. Arch bridges push weight outward and down to supports at each end through compression. Beam bridges rest on piers that carry weight straight down. Engineers calculate forces like compression (pushing), tension (pulling), and shear (sliding) to ensure the structure stays balanced and strong.",
+    "images": [
+      "Diagram showing three bridge types: suspension, arch, and beam with force arrows",
+      "Detailed view of suspension bridge showing cable tension and tower compression",
+      "Cross-section of arch bridge showing how weight transfers through compression"
+    ]
+  },
+  {
+    "question": "How do bees make honey?",
+    "response": "Bees make honey through a fascinating process! Forager bees collect nectar from flowers in their 'honey stomach.' Back at the hive, they pass it mouth-to-mouth to worker bees who chew it, adding enzymes that break down complex sugars. They deposit it in honeycomb cells and fan their wings to evaporate water, making it thick. Once it reaches 18% water content, they seal the cell with wax. This concentrated nectar is now honey - their winter food supply!",
+    "images": [
+      "Step-by-step illustration: bee collecting nectar, passing to worker bee, depositing in comb",
+      "Diagram showing honeycomb cells with bees fanning wings to evaporate water",
+      "Cross-section of sealed honeycomb cell showing stored honey"
+    ]
+  },
+  {
+    "question": "How does digestion work?",
+    "response": "Digestion is a multi-stage process of breaking down food! It starts in your mouth where teeth grind food and saliva begins breaking down starches. In the stomach, acid and enzymes break proteins into smaller pieces. The small intestine is where most nutrients are absorbed - enzymes break everything into tiny molecules that pass through the intestinal wall into your bloodstream. The large intestine absorbs water and forms waste. The whole journey takes 24-72 hours!",
+    "images": [
+      "Diagram of digestive system showing mouth, esophagus, stomach, intestines with labels",
+      "Close-up illustration of small intestine showing villi absorbing nutrients into bloodstream",
+      "Timeline infographic showing digestion stages and how long food stays in each organ"
+    ]
+  },
+  {
+    "question": "How does lightning form?",
+    "response": "Lightning is nature's way of balancing electrical charges! Inside storm clouds, ice particles collide, creating static electricity. Lighter particles rise (positive charge) while heavier ones sink (negative charge), separating the charges. The negative bottom of the cloud repels electrons on the ground, making it positively charged. When the electrical difference becomes too great, a channel of charged air forms and ZAP - electricity flows between cloud and ground at 270,000 mph! That's lightning.",
+    "images": [
+      "Diagram of thundercloud showing charge separation: positive top, negative bottom",
+      "Step-by-step illustration of lightning formation from charge buildup to discharge",
+      "Visual showing the lightning channel path and ground charge distribution"
+    ]
+  },
+  {
+    "question": "Why do volcanoes erupt?",
+    "response": "Volcanoes erupt when pressure from molten rock (magma) becomes too great! Deep underground, rock melts due to extreme heat, forming magma that's less dense than surrounding rock. It rises through cracks toward the surface. Dissolved gases in the magma expand as pressure decreases, like opening a shaken soda. When pressure overcomes the weight of rock above, the volcano erupts, releasing magma (now called lava), ash, and gases explosively!",
+    "images": [
+      "Cross-section diagram showing magma chamber, rising magma, and eruption path",
+      "Illustration comparing pressure buildup to a shaken soda bottle",
+      "Visual showing different types of eruptions: explosive vs effusive with ash and lava"
+    ]
+  },
+  {
+    "question": "How do satellites stay in orbit?",
+    "response": "Satellites stay in orbit by continuously 'falling' toward Earth while moving forward fast enough to keep missing it! They're launched to orbital velocity (about 17,500 mph for low Earth orbit). At this speed, the curve of their fall matches Earth's curve, so they never get closer. It's a perfect balance: gravity pulls them down while their forward momentum keeps them from hitting Earth. No fuel needed - they coast in the vacuum of space!",
+    "images": [
+      "Diagram showing satellite's forward motion and gravitational pull creating orbital path",
+      "Illustration comparing slow projectile falling to Earth vs fast satellite orbiting",
+      "Visual showing different orbital heights and speeds for various satellite types"
+    ]
+  },
+  {
+    "question": "How do airplanes land safely?",
+    "response": "Landing involves gradually reducing speed, altitude, and finally touching down gently! Pilots extend flaps and slats to increase lift at slower speeds, allowing safe descent. They follow a glide slope (typically 3 degrees) guided by instruments. Just before touchdown, they 'flare' - pull the nose up slightly to reduce descent rate. The main wheels touch first, then the nose wheel. Spoilers pop up to kill remaining lift, and brakes plus reverse thrust slow the plane. Precise timing and gentle control are key!",
+    "images": [
+      "Diagram showing landing approach with glide slope angle and key altitude points",
+      "Illustration of extended flaps, slats, and spoilers during different landing phases",
+      "Sequential view of landing: approach, flare, main wheels touchdown, nose wheel down, braking"
+    ]
+  },
+  {
+    "question": "How do cameras capture color?",
+    "response": "Digital cameras use a sensor covered with millions of tiny light-detecting pixels, but each pixel is color-blind! A Bayer filter sits over the sensor with a pattern of red, green, and blue filters (more green because our eyes are most sensitive to it). Each pixel only sees one color. The camera's processor then uses 'demosaicing' to calculate full color for each pixel by combining information from neighboring pixels. Your brain does something similar with your eye's cone cells!",
+    "images": [
+      "Diagram showing camera sensor with Bayer filter pattern: RGGB mosaic",
+      "Close-up illustration of how one pixel uses neighboring pixels to determine full color",
+      "Comparison showing raw sensor data vs processed full-color image"
+    ]
+  },
+  {
+    "question": "How does facial recognition identify people?",
+    "response": "Facial recognition uses AI to measure and analyze unique facial features! The system first detects a face, then maps key landmarks like distance between eyes, nose width, jawline shape, and cheekbone position - creating a unique 'faceprint.' It converts these measurements into a mathematical representation. To identify someone, it compares this faceprint against a database. Modern systems use deep learning neural networks trained on millions of faces to achieve high accuracy, even with different angles, lighting, or expressions!",
+    "images": [
+      "Illustration of face with key measurement points and distances marked",
+      "Diagram showing facial landmark detection: eyes, nose, mouth, jawline points",
+      "Flowchart: face detection → feature extraction → comparison to database → match result"
+    ]
+  },
+  {
+    "question": "How does AI draw pictures from text?",
+    "response": "AI image generators like DALL-E and Midjourney use neural networks trained on millions of image-text pairs! During training, the AI learns associations between words and visual patterns. When you give it a prompt, it starts with random noise, then gradually refines it through 'diffusion' - repeatedly predicting and removing noise while steering toward patterns that match your description. It's like sculpting an image from static! The AI combines learned concepts to create novel images it has never seen before.",
+    "images": [
+      "Diagram showing training process: AI learning from millions of labeled images",
+      "Visual showing diffusion process: random noise gradually becoming a coherent image",
+      "Split-screen showing text prompt on left and AI-generated image on right with concept connections"
+    ]
+  },
+  {
+    "question": "Why does my phone battery drain fast?",
+    "response": "Phone batteries drain quickly due to several factors! Screen brightness is the biggest culprit - brighter displays use more power. Background apps constantly syncing, refreshing, and using location services drain battery invisibly. Weak cell signals make your phone work harder to maintain connection. Old batteries lose capacity over time (lithium-ion degrades with charge cycles). Push notifications, automatic updates, and poor network coverage all contribute. Cold weather also temporarily reduces battery performance!",
+    "images": [
+      "Pie chart showing battery consumption by feature: screen 40%, apps 25%, system 20%, etc.",
+      "Illustration comparing battery life with strong vs weak signal, showing increased power usage",
+      "Diagram showing lithium-ion battery degradation over charge cycles"
+    ]
+  },
+  {
+    "question": "How do vaccines protect you?",
+    "response": "Vaccines train your immune system to recognize and fight diseases! They contain weakened, dead, or partial viruses/bacteria that can't make you seriously sick. When injected, your immune system detects these foreign invaders and creates specific antibodies and memory cells. If you encounter the real disease later, your immune system remembers and quickly produces the right antibodies to destroy it before you get sick. It's like a fire drill for your immune system - practice makes perfect!",
+    "images": [
+      "Diagram showing vaccine components entering body and triggering immune response",
+      "Illustration of immune system creating antibodies and memory cells after vaccination",
+      "Timeline comparison: immune response to vaccine vs immune response to actual disease"
+    ]
+  },
+  {
+    "question": "How does human memory work?",
+    "response": "Memory involves three stages: encoding, storage, and retrieval! When you experience something, neurons fire in specific patterns (encoding). If the pattern repeats or is emotionally significant, connections between neurons strengthen (storage) - 'neurons that fire together, wire together.' The hippocampus temporarily stores new memories, then transfers important ones to the cortex for long-term storage. Retrieval happens when you trigger the same neural pattern. Memories aren't perfect recordings - they're reconstructed each time and can change!",
+    "images": [
+      "Diagram of brain highlighting hippocampus and cortex regions involved in memory",
+      "Illustration showing neuron connections strengthening when a memory is formed",
+      "Flowchart of memory process: experience → encoding → short-term → consolidation → long-term"
+    ]
+  },
+  {
+    "question": "How does sound travel through air?",
+    "response": "Sound travels as a wave of pressure changes through air molecules! When something vibrates (like a guitar string), it pushes nearby air molecules together (compression), which then push their neighbors, and so on. After compression comes expansion (rarefaction) where molecules spread apart. This creates a wave pattern traveling outward at about 767 mph at sea level. Your ear detects these pressure changes and your brain interprets them as sound. Higher frequency waves = higher pitch, larger waves = louder sound!",
+    "images": [
+      "Diagram showing sound wave as alternating compression and rarefaction zones in air",
+      "Illustration of vibrating speaker cone creating pressure waves in air molecules",
+      "Visual comparing high-frequency wave (high pitch) vs low-frequency wave (low pitch)"
+    ]
+  },
+  {
+    "question": "Why do we dream?",
+    "response": "Scientists aren't completely certain, but dreams likely serve multiple functions! During REM sleep, your brain processes emotions, consolidates memories, and practices responses to situations. The 'threat simulation theory' suggests dreams help us rehearse handling dangers. Dreams may also help with creative problem-solving by making random associations. Your prefrontal cortex (logic center) is less active during REM, explaining why dreams feel illogical. Some researchers think dreams are just your brain making sense of random neural activity during sleep maintenance!",
+    "images": [
+      "Diagram showing brain activity during REM sleep with active and inactive regions highlighted",
+      "Illustration of memory consolidation: daily experiences being sorted and stored during dreams",
+      "Visual timeline of sleep cycles showing when REM/dreaming occurs throughout the night"
+    ]
+  },
+  {
+    "question": "How does the heart pump blood?",
+    "response": "Your heart is a muscular pump with four chambers working in coordination! Deoxygenated blood from your body enters the right atrium, then flows to the right ventricle which pumps it to the lungs for oxygen. Oxygenated blood returns to the left atrium, moves to the left ventricle (the heart's strongest chamber), which pumps it out through the aorta to your entire body. Valves between chambers prevent backflow. The heart's electrical system coordinates contractions - your heart beats about 100,000 times per day!",
+    "images": [
+      "Diagram of heart showing four chambers, valves, and blood flow direction with arrows",
+      "Illustration of cardiac cycle: blood filling chambers then being pumped out",
+      "Split view showing deoxygenated (blue) vs oxygenated (red) blood pathways"
+    ]
+  },
+  {
+    "question": "Why do we get goosebumps?",
+    "response": "Goosebumps are an evolutionary leftover from our hairier ancestors! When you're cold or scared, tiny muscles at the base of each hair (arrector pili) contract, making hairs stand up. In furry animals, this traps air for insulation when cold, or makes them look bigger when threatened. For mostly hairless humans, it doesn't help much anymore, but the reflex remains. Cold triggers it to attempt warmth; strong emotions trigger it due to adrenaline release activating the same response!",
+    "images": [
+      "Close-up diagram of skin showing hair follicle and arrector pili muscle contracting",
+      "Comparison illustration: human arm with goosebumps vs furry animal with raised fur",
+      "Visual showing two triggers: cold temperature and emotional response causing same reaction"
+    ]
+  },
+  {
+    "question": "How do credit cards process payments?",
+    "response": "Credit card payments involve a complex dance happening in seconds! When you swipe/tap, your card data goes to the merchant's payment terminal, then to their bank (acquiring bank). This bank sends the transaction to the card network (Visa, Mastercard), which routes it to your bank (issuing bank). Your bank checks if you have credit available and if it's not fraudulent, then approves. The approval travels back through the same chain. Later, money actually transfers from your bank to the merchant's bank. The whole authorization takes just 2-3 seconds!",
+    "images": [
+      "Flowchart showing transaction path: terminal → acquiring bank → card network → issuing bank → approval",
+      "Diagram illustrating the involved parties: merchant, banks, card network, and cardholder",
+      "Timeline showing instant authorization vs delayed settlement (1-3 days for actual money transfer)"
+    ]
+  },
+  {
+    "question": "How does your brain see colors?",
+    "response": "Color vision starts in your eyes but happens in your brain! Your retina has three types of cone cells, each sensitive to different wavelengths: red, green, or blue light. When light hits your retina, cones send electrical signals to your brain. Your visual cortex compares signals from all three cone types - strong red + weak green + no blue might equal 'orange.' Your brain constructs the color you perceive! Interestingly, color is a creation of your mind - the physical world just has different wavelengths of light.",
+    "images": [
+      "Diagram of human eye showing retina with cone cells sensitive to red, green, and blue light",
+      "Graph showing wavelength sensitivity curves for the three types of cone cells",
+      "Illustration of brain's visual cortex processing cone signals to create color perception"
+    ]
+  },
+  {
+    "question": "Why do we yawn when we're tired?",
+    "response": "Despite being so common, scientists still debate why we yawn! The leading 'brain cooling' theory suggests yawning cools your brain - the deep breath draws cool air over blood vessels in your face and skull. Other theories include: increasing alertness by stretching ear drums and jaw muscles, regulating oxygen/carbon dioxide levels, or signaling state changes (tired → alert, bored → ready). Yawning is also highly contagious due to empathy and mirror neurons - seeing someone yawn triggers your brain to yawn too!",
+    "images": [
+      "Illustration showing air flow during yawn and blood vessel cooling in head",
+      "Diagram of brain showing areas activated during yawn: hypothalamus and motor cortex",
+      "Visual showing contagious yawning: mirror neurons activating in observer's brain"
+    ]
+  },
+  {
+    "question": "How does your phone know your location?",
+    "response": "Your phone uses multiple systems to pinpoint location! GPS (Global Positioning System) uses signals from satellites - your phone calculates distance to 4+ satellites based on signal timing, triangulating your position to within 16 feet. In cities or indoors where GPS struggles, it uses cell tower triangulation (less accurate, ~1000 feet). It also uses Wi-Fi positioning - comparing nearby Wi-Fi networks to a database of known locations. The phone combines all available methods for the best accuracy!",
+    "images": [
+      "Diagram showing phone receiving signals from multiple GPS satellites in orbit",
+      "Illustration of triangulation: phone determining position based on distance to 3+ points",
+      "Visual showing three location methods: GPS satellites, cell towers, Wi-Fi networks"
+    ]
+  },
+  {
+    "question": "How do plants make oxygen?",
+    "response": "Plants make oxygen through photosynthesis - using sunlight to convert CO2 and water into sugar and oxygen! Chlorophyll in leaves absorbs sunlight energy. This energy splits water molecules (H2O) into hydrogen and oxygen. The oxygen is released as a waste product (lucky for us!). The hydrogen combines with CO2 from the air to create glucose (sugar) that the plant uses for energy and growth. This happens in chloroplasts inside leaf cells. Essentially, plants are running solar-powered air purification factories!",
+    "images": [
+      "Diagram of leaf cross-section showing chloroplasts where photosynthesis occurs",
+      "Chemical equation illustration: 6CO2 + 6H2O + light → C6H12O6 + 6O2",
+      "Visual showing inputs (sunlight, water, CO2) and outputs (glucose, oxygen) of photosynthesis"
+    ]
+  },
+  {
+    "question": "How do 3D printers create objects?",
+    "response": "3D printers build objects layer by layer from the bottom up! FDM printers (most common) heat plastic filament until it's soft, then push it through a moving nozzle that precisely deposits thin layers. Each layer fuses to the one below. The printer follows a digital model, moving in X, Y, and Z directions to build the complete shape. It's like drawing with a hot glue gun, but extremely precise! Other types use resin hardened by UV light, or even metal powder fused by lasers.",
+    "images": [
+      "Diagram of FDM 3D printer showing filament spool, heating nozzle, and layer-by-layer building",
+      "Close-up illustration of print head depositing molten plastic in thin layers",
+      "Time-lapse sequence showing object gradually forming from bottom to top"
+    ]
+  },
+  {
+    "question": "How does coffee wake you up?",
+    "response": "Coffee's magic ingredient is caffeine, which blocks sleepiness in your brain! Throughout the day, a molecule called adenosine builds up and binds to receptors, making you feel tired. Caffeine has a similar shape to adenosine and sneaks into those same receptors, blocking adenosine from binding. Your brain doesn't receive the 'tired' signal! Caffeine also triggers dopamine release, making you feel good. The effect peaks 30-60 minutes after drinking and lasts 3-5 hours as your liver breaks down caffeine.",
+    "images": [
+      "Molecular structure comparison showing caffeine vs adenosine molecules",
+      "Diagram of brain receptor with adenosine being blocked by caffeine molecule",
+      "Graph showing caffeine levels in bloodstream over time after consumption"
+    ]
+  },
+  {
+    "question": "How do mirrors flip left and right?",
+    "response": "Here's the mind-bender: mirrors don't actually flip left and right - they flip front and back! When you raise your right hand, your mirror image raises its right hand too (the hand on the same side). What's flipped is depth - things closer to the mirror appear closer in the reflection. We perceive it as left-right flipping because we imagine walking into the mirror and turning around. If you stood on your head, the mirror would seem to flip top and bottom instead! It's all about perspective.",
+    "images": [
+      "Diagram showing person facing mirror with depth axis flipped, not left-right axis",
+      "Illustration comparing what actually flips (front-back) vs what we perceive (left-right)",
+      "Visual showing coordinate system: X (left-right), Y (up-down), Z (depth) with Z flipped"
+    ]
+  },
+  {
+    "question": "Why does hair turn gray?",
+    "response": "Hair turns gray when pigment-producing cells called melanocytes stop working! Each hair follicle contains melanocytes that produce melanin (the pigment that colors hair). As you age, these cells gradually become less active and eventually die. Without melanin, new hair grows in without color - appearing gray, silver, or white. Genetics determine when this happens (some people gray in their 20s, others in their 60s). Stress, smoking, and certain medical conditions can accelerate the process, but you can't prevent it entirely!",
+    "images": [
+      "Cross-section diagram of hair follicle showing melanocytes at the base producing pigment",
+      "Comparison illustration: active melanocytes producing colored hair vs inactive ones producing gray hair",
+      "Visual timeline showing progressive graying: dark hair → mixed → fully gray"
+    ]
+  },
+  {
+    "question": "How to remove coffee stains from clothes?",
+    "response": "Act fast for best results! First, blot (don't rub) the stain with a clean cloth to absorb excess coffee. Rinse the back of the stain with cold water to push coffee out. Mix 1 tablespoon liquid dish soap, 1 tablespoon white vinegar, and 2 cups warm water. Apply this solution with a clean cloth, blotting from outside in. Rinse with cold water. If the stain persists, apply stain remover or liquid laundry detergent, then wash as usual. For old stains, soak in cold water with enzyme detergent for 30 minutes first.",
+    "images": [
+      "Step 1 illustration: hand blotting fresh coffee spill on white shirt with paper towel",
+      "Step 2 illustration: mixing bowl with soap, vinegar and water with measuring spoons",
+      "Step 3 illustration: applying solution to stain with cloth, showing blotting motion",
+      "Before and after comparison: coffee-stained shirt versus clean shirt after treatment"
+    ]
+  },
+  {
+    "question": "How to clean white sneakers?",
+    "response": "Make white sneakers look new again with this method! First, remove laces and insoles. Mix baking soda and white vinegar into a paste (it will fizz!). Use an old toothbrush to scrub the paste onto shoes in circular motions, focusing on stained areas. Let sit 15-20 minutes. Wipe clean with a damp cloth. For stubborn stains, use a magic eraser or diluted bleach (1:5 ratio with water). Clean laces separately by soaking in soapy water. Air dry completely - never use a dryer! Repeat monthly to maintain that crisp white look.",
+    "images": [
+      "Ingredients setup: baking soda, vinegar, bowl with paste, old toothbrush",
+      "Step-by-step illustration: applying paste, scrubbing with circular motions, wiping clean",
+      "Before and after photos: dirty yellowed sneakers versus bright white cleaned sneakers",
+      "Detailed close-up showing toothbrush scrubbing textured sneaker sole"
+    ]
+  },
+  {
+    "question": "How to fix a leaking faucet?",
+    "response": "Most dripping faucets need a simple washer or O-ring replacement! First, turn off water supply under the sink. Close the drain to avoid losing parts. Remove the faucet handle (may need to pop off decorative cap to access screw). Unscrew the packing nut to expose the stem/cartridge. Remove old washer or O-ring at the bottom - this rubber piece usually causes leaks when worn. Replace with exact same size from hardware store. Reassemble in reverse order. Turn water back on. If it still leaks, you may need to replace the entire cartridge.",
+    "images": [
+      "Exploded diagram showing faucet components: handle, packing nut, stem, washer, O-rings",
+      "Step-by-step illustration: turning off water valve, removing handle, accessing washer",
+      "Close-up comparison: worn old washer with cracks versus new replacement washer",
+      "Tools needed: adjustable wrench, screwdriver, replacement washers, plumber's grease"
+    ]
+  },
+  {
+    "question": "How to remove rust from metal?",
+    "response": "Remove rust using household items or commercial products! For light rust, make a paste with baking soda and water, apply to rusted area, let sit 1 hour, then scrub with steel wool or a stiff brush. For tougher rust, soak the item in white vinegar overnight, then scrub. Alternatively, use a commercial rust remover following package directions. For large items, spray with rust converter which chemically transforms rust into a stable coating. After removing rust, rinse thoroughly, dry completely, and apply rust-preventive primer or oil to prevent return. Prevention tip: keep metal dry and coated!",
+    "images": [
+      "Three methods shown: baking soda paste, white vinegar soak, commercial rust remover",
+      "Before, during, and after sequence: rusty tool → being scrubbed → restored clean metal",
+      "Close-up showing steel wool removing rust with scrubbing motion",
+      "Final step illustration: applying protective coating spray to prevent future rust"
+    ]
+  },
+  {
+    "question": "How to unclog a drain naturally?",
+    "response": "Skip harsh chemicals and try this natural method! First, pour a full kettle of boiling water down the drain to loosen debris. Pour 1/2 cup baking soda down the drain. Wait 5 minutes, then pour 1 cup white vinegar down. The mixture will foam and fizz - this is normal! Cover the drain and let it work for 30 minutes. Flush with another kettle of boiling water. For stubborn clogs, use a plunger or drain snake. For prevention, weekly flush drains with boiling water and avoid putting grease, coffee grounds, or hair down drains.",
+    "images": [
+      "Ingredients and tools: kettle of boiling water, baking soda box, vinegar bottle, measuring cup",
+      "Step-by-step illustration: pouring baking soda, adding vinegar showing fizzing reaction, flushing with water",
+      "Cross-section view of drain showing clog being dissolved by baking soda-vinegar reaction",
+      "Prevention tips visual: drain strainer catching hair, grease going in trash not sink"
+    ]
+  },
+  {
+    "question": "How to get rid of fruit flies?",
+    "response": "Eliminate fruit flies with a simple trap and source removal! First, find and remove the breeding source - overripe fruit, damp mops, trash, or recycling. Make a trap: put apple cider vinegar in a jar, add a drop of dish soap (breaks surface tension so flies sink), cover with plastic wrap secured with a rubber band, poke small holes in the wrap. Flies enter but can't escape! Place traps near problem areas. Clean drains with boiling water and baking soda - flies breed there too. Results in 24-48 hours. Prevent by storing fruit in the fridge and taking out trash regularly.",
+    "images": [
+      "DIY trap setup: jar with apple cider vinegar, dish soap, plastic wrap with holes, rubber band",
+      "Cross-section diagram showing how trap works: flies enter holes but can't escape",
+      "Common breeding sources illustrated: overripe bananas, sink drain, trash can, recycling bin",
+      "Before and after: kitchen with fruit flies swarming versus clean fly-free kitchen with trap"
+    ]
+  },
+  {
+    "question": "How to descale a coffee maker?",
+    "response": "Descaling removes mineral buildup and keeps coffee tasting great! Fill the reservoir with equal parts white vinegar and water. Run a brew cycle (without coffee grounds!) halfway, then turn off and let sit 30 minutes - this gives vinegar time to dissolve scale. Complete the brew cycle. Run 2-3 cycles with just clean water to rinse out all vinegar taste. For stubborn buildup, use commercial descaling solution. Descale every 1-3 months depending on water hardness. Signs you need to descale: slow brewing, weird taste, or the machine sputtering.",
+    "images": [
+      "Step-by-step illustration: filling reservoir with vinegar-water mixture, running brew cycle",
+      "Close-up cutaway showing mineral scale buildup in coffee maker tubes before descaling",
+      "Comparison showing clean tube after descaling versus clogged tube before",
+      "Recommended schedule calendar: monthly descaling for hard water, quarterly for soft water"
+    ]
+  },
+  {
+    "question": "How to remove sticker residue?",
+    "response": "Remove sticky residue without damaging surfaces! For glass or plastic, apply rubbing alcohol or nail polish remover with a cloth, let soak 1-2 minutes, then wipe away. For delicate surfaces, use vegetable oil or peanut butter - the oils dissolve adhesive. Let sit 5 minutes then wipe clean with soap and water. For fabric, freeze the item to harden residue, then scrape with a dull knife. Commercial products like Goo Gone work well too. For paper stickers, use a hair dryer to heat adhesive first, making it easier to peel. Never use sharp objects that could scratch!",
+    "images": [
+      "Three methods shown: rubbing alcohol on glass, vegetable oil on plastic, freezing fabric item",
+      "Step-by-step illustration: applying solution, waiting for it to work, wiping away residue",
+      "Hair dryer technique: heating sticker to soften adhesive before peeling",
+      "Surface-specific guide chart showing which method works best for different materials"
+    ]
+  },
+  {
+    "question": "How to fold a fitted bedsheet neatly?",
+    "response": "The fitted sheet mystery solved! Hold the sheet inside-out, hands in two adjacent top corners. Bring hands together, folding one corner over the other. Pick up the third corner, fold it over the others. Do the same with the fourth corner - all corners should be nested. Lay the sheet on a flat surface in a rectangle shape. Fold the elastic edges inward to form a neat rectangle. Fold in thirds lengthwise, then in thirds again. Practice makes perfect - it's tricky at first but becomes muscle memory!",
+    "images": [
+      "Overhead view showing hand positions at each corner with numbered steps 1-4",
+      "Sequential diagrams showing corners being folded and nested together",
+      "Final folding steps: laying flat, tucking elastic edges, folding into neat rectangle",
+      "Before and after comparison: messy bunched fitted sheet versus perfectly folded square"
+    ]
+  },
+  {
+    "question": "How to tie a tie?",
+    "response": "Master the classic Four-in-Hand knot in 6 steps! Drape tie around your neck, wide end on the right hanging 12 inches lower than narrow end. Cross wide end over narrow. Wrap wide end around behind narrow end (left to right). Bring wide end across the front again (right to left). Pull wide end up through the neck loop. Thread it down through the front knot you just created. Tighten by holding the knot and pulling the narrow end. Adjust the knot up to your collar. The wide end should reach your belt buckle. Practice in a mirror until smooth!",
+    "images": [
+      "Step-by-step diagram showing all 6 steps with tie positions clearly illustrated",
+      "Front view showing proper tie length: wide end touching belt buckle, narrow end shorter",
+      "Common mistakes illustrated: knot too loose, tie too short, tie too long, off-center",
+      "Final result: well-tied Four-in-Hand knot with proper dimple below the knot"
     ]
   }
 ]
-
