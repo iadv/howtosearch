@@ -40,7 +40,7 @@ export async function GET(req: NextRequest) {
       LIMIT 50
     `;
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       sessions: sessions.map(s => ({
         id: s.id,
         userQuery: s.user_query,
@@ -53,6 +53,11 @@ export async function GET(req: NextRequest) {
         location: s.city && s.country ? `${s.city}, ${s.country}` : s.country || 'Unknown',
       })),
     });
+
+    // Prevent caching to always show latest data
+    response.headers.set('Cache-Control', 'no-store, max-age=0');
+    
+    return response;
   } catch (error) {
     console.error('❌ Error fetching sessions:', error);
     return NextResponse.json(
