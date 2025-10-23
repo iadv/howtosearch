@@ -66,9 +66,9 @@ export default function SessionViewer({ session, onClose }: SessionViewerProps) 
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-5xl max-h-[90vh] flex flex-col"
+          className="relative w-full max-w-5xl h-[90vh] flex flex-col"
         >
-          <Card className="flex-1 overflow-hidden shadow-2xl border-0 flex flex-col">
+          <Card className="flex-1 overflow-hidden shadow-2xl border-0 flex flex-col h-full">
             {/* Header */}
             <div className="flex-shrink-0 px-8 py-6 border-b border-slate-200 bg-gradient-to-r from-violet-50 to-indigo-50">
               <div className="flex items-start justify-between">
@@ -101,7 +101,7 @@ export default function SessionViewer({ session, onClose }: SessionViewerProps) 
             </div>
 
             {/* Content */}
-            <ScrollArea className="flex-1">
+            <ScrollArea className="flex-1 min-h-0">
               <div className="p-8 space-y-8">
                 {/* Response Section */}
                 <motion.div
