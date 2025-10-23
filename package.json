@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "db:init": "tsx scripts/init-db.ts",
-    "db:compliance": "tsx scripts/add-compliance-fields.ts"
+    "db:compliance": "tsx scripts/add-compliance-fields.ts",
+    "db:sessions": "tsx scripts/create-sessions-table.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^0.0.39",

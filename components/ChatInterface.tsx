@@ -17,6 +17,7 @@ export interface Message {
 interface ChatInterfaceProps {
   onNewImages: (images: any[]) => void;
   onChatStart?: () => void;
+  onNewMessage?: (userQuery: string, assistantResponse: string) => void;
 }
 
 const EXAMPLE_PROMPTS = [
@@ -52,7 +53,7 @@ const EXAMPLE_PROMPTS = [
   'What to do when smoke alarm won\'t stop'
 ];
 
-export default function ChatInterface({ onNewImages, onChatStart }: ChatInterfaceProps) {
+export default function ChatInterface({ onNewImages, onChatStart, onNewMessage }: ChatInterfaceProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -111,6 +112,11 @@ export default function ChatInterface({ onNewImages, onChatStart }: ChatInterfac
         role: 'assistant',
         content: responseText,
       }]);
+
+      // Notify parent about the new message exchange
+      if (onNewMessage) {
+        onNewMessage(userMessage, responseText);
+      }
 
       if (data.needsImages && data.imagePrompts && data.imagePrompts.length > 0) {
         const { getImageEndpoint } = await import('@/lib/config');
