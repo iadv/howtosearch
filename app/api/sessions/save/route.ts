@@ -14,7 +14,14 @@ function getDb() {
 
 export async function POST(req: NextRequest) {
   try {
+    console.log('📥 Received session save request');
     const body = await req.json();
+    console.log('📦 Request body:', {
+      hasUserQuery: !!body.userQuery,
+      hasAssistantResponse: !!body.assistantResponse,
+      imageCount: body.imageCount || 0,
+    });
+    
     const {
       userQuery,
       assistantResponse,
@@ -26,6 +33,7 @@ export async function POST(req: NextRequest) {
     } = body;
 
     if (!userQuery || !assistantResponse) {
+      console.error('❌ Missing required fields:', { userQuery: !!userQuery, assistantResponse: !!assistantResponse });
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -75,10 +83,18 @@ export async function POST(req: NextRequest) {
       RETURNING id, created_at
     `;
 
-    // Cleanup old sessions (keep only 50)
-    await sql`SELECT cleanup_old_sessions()`;
-
     console.log('✅ Session saved:', session.id);
+
+    // Cleanup old sessions (keep only 50) - FIFO
+    await sql`
+      DELETE FROM sessions
+      WHERE id NOT IN (
+        SELECT id
+        FROM sessions
+        ORDER BY created_at DESC
+        LIMIT 50
+      )
+    `;
 
     return NextResponse.json({
       success: true,

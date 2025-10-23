@@ -46,10 +46,36 @@ export default function Home() {
     }
   };
 
-  const handleNewMessage = (userQuery: string, assistantResponse: string) => {
+  const handleNewMessage = async (userQuery: string, assistantResponse: string) => {
     setLastUserQuery(userQuery);
     setLastAssistantResponse(assistantResponse);
     messageCount.current += 1;
+
+    // Save session immediately (don't wait for page close)
+    try {
+      const sessionDuration = Date.now() - sessionStartTime.current;
+      const response = await fetch('/api/sessions/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userQuery,
+          assistantResponse,
+          images: images.slice(0, 10),
+          needsImages: images.length > 0,
+          imageCount: images.length,
+          sessionDuration,
+          messageCount: messageCount.current,
+        }),
+      });
+      
+      if (response.ok) {
+        console.log('✅ Session saved successfully');
+      } else {
+        console.error('❌ Failed to save session:', await response.text());
+      }
+    } catch (error) {
+      console.error('❌ Error saving session:', error);
+    }
   };
 
   // Save session when user leaves
@@ -80,22 +106,26 @@ export default function Home() {
       }
     };
 
-    const handleBeforeUnload = () => {
-      // Use sendBeacon for reliable sending on page unload
-      if (hasStartedChat && lastUserQuery && lastAssistantResponse) {
-        const sessionDuration = Date.now() - sessionStartTime.current;
-        const data = JSON.stringify({
-          userQuery: lastUserQuery,
-          assistantResponse: lastAssistantResponse,
-          images: images.slice(0, 10),
-          needsImages: images.length > 0,
-          imageCount: images.length,
-          sessionDuration,
-          messageCount: messageCount.current,
-        });
-        navigator.sendBeacon('/api/sessions/save', data);
-      }
-    };
+        const handleBeforeUnload = () => {
+          // Use sendBeacon for reliable sending on page unload
+          if (hasStartedChat && lastUserQuery && lastAssistantResponse) {
+            const sessionDuration = Date.now() - sessionStartTime.current;
+            const data = {
+              userQuery: lastUserQuery,
+              assistantResponse: lastAssistantResponse,
+              images: images.slice(0, 10),
+              needsImages: images.length > 0,
+              imageCount: images.length,
+              sessionDuration,
+              messageCount: messageCount.current,
+            };
+            
+            // Create a Blob with the correct content-type for sendBeacon
+            const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+            navigator.sendBeacon('/api/sessions/save', blob);
+            console.log('📤 Session data sent via sendBeacon');
+          }
+        };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
 

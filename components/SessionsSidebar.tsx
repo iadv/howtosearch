@@ -153,42 +153,80 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
                         transition={{ delay: index * 0.05 }}
                       >
                         <Card
-                          className="p-4 cursor-pointer hover:shadow-lg transition-all duration-200 hover:border-violet-300 group"
+                          className="relative overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 hover:border-violet-400 group border-0 bg-gradient-to-br from-white to-slate-50"
                           onClick={() => {
                             onSessionClick(session);
                             setIsOpen(false);
                           }}
                         >
-                          {/* Query */}
-                          <h3 className="font-semibold text-sm text-slate-900 mb-2 line-clamp-2 group-hover:text-violet-600 transition-colors">
-                            {session.userQuery}
-                          </h3>
+                          {/* Gradient Overlay on Hover */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-violet-500/0 to-indigo-500/0 group-hover:from-violet-500/5 group-hover:to-indigo-500/5 transition-all duration-300" />
+                          
+                          <div className="relative p-4">
+                            {/* Query with Icon */}
+                            <div className="flex items-start gap-2 mb-2">
+                              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-violet-500 to-indigo-500 flex items-center justify-center">
+                                <Sparkles className="w-3 h-3 text-white" />
+                              </div>
+                              <h3 className="flex-1 font-semibold text-sm text-slate-900 line-clamp-2 group-hover:text-violet-600 transition-colors">
+                                {session.userQuery}
+                              </h3>
+                            </div>
 
-                          {/* Response Preview */}
-                          <p className="text-xs text-slate-600 mb-3 line-clamp-2">
-                            {session.assistantResponse.substring(0, 100)}...
-                          </p>
+                            {/* Image Preview Grid - if images exist */}
+                            {session.images && session.images.length > 0 && (
+                              <div className="mb-3 grid grid-cols-3 gap-1.5 rounded-lg overflow-hidden">
+                                {session.images.slice(0, 3).map((img: any, idx: number) => (
+                                  <div
+                                    key={idx}
+                                    className="relative aspect-square bg-slate-100 rounded-md overflow-hidden"
+                                  >
+                                    {img.imageUrl && (
+                                      <Image
+                                        src={img.imageUrl}
+                                        alt={img.prompt || 'Visual'}
+                                        fill
+                                        className="object-cover group-hover:scale-110 transition-transform duration-300"
+                                        unoptimized
+                                      />
+                                    )}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                  </div>
+                                ))}
+                              </div>
+                            )}
 
-                          {/* Meta Info */}
-                          <div className="flex items-center justify-between text-xs text-slate-400">
-                            <div className="flex items-center gap-3">
-                              <span className="flex items-center gap-1">
-                                <Clock className="w-3 h-3" />
-                                {getRelativeTime(session.createdAt)}
-                              </span>
-                              {session.imageCount > 0 && (
-                                <span className="flex items-center gap-1 text-violet-600">
-                                  <ImageIcon className="w-3 h-3" />
-                                  {session.imageCount}
+                            {/* Response Preview */}
+                            <p className="text-xs text-slate-600 mb-3 line-clamp-2 leading-relaxed">
+                              {session.assistantResponse.substring(0, 120)}...
+                            </p>
+
+                            {/* Meta Info Bar */}
+                            <div className="flex items-center justify-between text-xs">
+                              <div className="flex items-center gap-3">
+                                <span className="flex items-center gap-1 text-slate-400">
+                                  <Clock className="w-3 h-3" />
+                                  {getRelativeTime(session.createdAt)}
+                                </span>
+                                {session.imageCount > 0 && (
+                                  <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-violet-100 text-violet-600 font-medium">
+                                    <ImageIcon className="w-3 h-3" />
+                                    {session.imageCount}
+                                  </span>
+                                )}
+                              </div>
+                              {session.location && session.location !== 'Unknown' && session.location !== 'Unknown Location' && (
+                                <span className="flex items-center gap-1 text-slate-400">
+                                  <MapPin className="w-3 h-3" />
+                                  <span className="truncate max-w-[100px]">{session.location}</span>
                                 </span>
                               )}
                             </div>
-                            {session.location && session.location !== 'Unknown' && (
-                              <span className="flex items-center gap-1">
-                                <MapPin className="w-3 h-3" />
-                                {session.location}
-                              </span>
-                            )}
+                          </div>
+
+                          {/* Shine Effect on Hover */}
+                          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 group-hover:translate-x-full transition-transform duration-1000" />
                           </div>
                         </Card>
                       </motion.div>
