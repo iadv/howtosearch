@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronLeft, Clock, MapPin, Image as ImageIcon, Sparkles } from 'lucide-react';
+import NextImage from 'next/image';
 import { Card } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
@@ -182,7 +183,7 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
                                     className="relative aspect-square bg-slate-100 rounded-md overflow-hidden"
                                   >
                                     {img.imageUrl && (
-                                      <Image
+                                      <NextImage
                                         src={img.imageUrl}
                                         alt={img.prompt || 'Visual'}
                                         fill
