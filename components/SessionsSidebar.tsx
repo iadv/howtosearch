@@ -38,9 +38,15 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
 
   const fetchSessions = async () => {
     try {
-      const response = await fetch('/api/sessions/recent');
+      const response = await fetch('/api/sessions/recent', {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache',
+        },
+      });
       if (response.ok) {
         const data = await response.json();
+        console.log('✅ Fetched sessions:', data.sessions.length);
         setSessions(data.sessions);
       }
     } catch (error) {
