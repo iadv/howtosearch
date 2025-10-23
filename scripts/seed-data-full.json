@@ -1,0 +1,48 @@
+[
+  {
+    "question": "How does an airplane stay in the air?",
+    "response": "Airplanes stay in the air through a combination of four key forces: lift, weight, thrust, and drag. The wings are specially shaped (curved on top, flatter on bottom) to create lift - as air flows faster over the curved top surface, it creates lower pressure above the wing compared to below, pushing the plane upward. The engines provide thrust to move forward, while the plane's weight pulls it down and air resistance creates drag. When lift exceeds weight and thrust overcomes drag, the plane flies!",
+    "images": [
+      "Diagram showing the four forces acting on an airplane: lift (upward arrow from wings), weight (downward arrow from center), thrust (forward arrow from engines), and drag (backward arrow)",
+      "Cross-section view of an airplane wing showing how air flows faster over the curved top surface, creating low pressure above and high pressure below",
+      "Illustration of an airplane in flight with colored arrows indicating airflow patterns around the wings and fuselage"
+    ]
+  },
+  {
+    "question": "How does Wi-Fi actually work?",
+    "response": "Wi-Fi works by converting data into radio waves and transmitting them through the air! Your router receives internet data through a cable, then converts it into radio waves using an antenna. These waves travel through the air at specific frequencies (usually 2.4GHz or 5GHz). Your device has a Wi-Fi adapter that receives these radio waves and converts them back into data. It's like an invisible highway of information floating all around you! The router constantly sends and receives these signals, allowing multiple devices to connect and communicate simultaneously.",
+    "images": [
+      "Simple diagram of a Wi-Fi router sending radio waves (shown as curved lines) to a laptop, smartphone, and tablet",
+      "Visualization of radio wave frequencies showing the difference between 2.4GHz and 5GHz bands with wave patterns",
+      "Cross-section view of a home with Wi-Fi signal strength zones shown in different colors from router to various rooms"
+    ]
+  },
+  {
+    "question": "Why is the sky blue?",
+    "response": "The sky appears blue because of how sunlight interacts with Earth's atmosphere! Sunlight looks white, but it's actually made up of all colors of the rainbow. As sunlight enters our atmosphere, it collides with tiny gas molecules. Blue light has a shorter wavelength and gets scattered in all directions much more than other colors (a process called Rayleigh scattering). This scattered blue light comes at our eyes from all parts of the sky, making it appear blue. At sunset, sunlight travels through more atmosphere, scattering away most blue light, which is why we see reds and oranges!",
+    "images": [
+      "Diagram showing white sunlight entering Earth's atmosphere and blue light scattering in all directions while other colors pass through more directly",
+      "Illustration of light wavelengths with blue having shorter waves and red having longer waves",
+      "Visual comparison of daytime blue sky versus sunset/sunrise with orange-red colors, showing the path of light through atmosphere"
+    ]
+  },
+  {
+    "question": "How do touchscreens sense my finger?",
+    "response": "Most modern touchscreens use capacitive technology - they detect the electrical properties of your finger! The screen has a layer of material that stores electrical charges. When your finger (which conducts electricity) touches the screen, it disrupts the electrostatic field at that specific point. Sensors detect this change in the electric field and calculate exactly where you touched. Your phone's processor then interprets whether you tapped, swiped, pinched, or made any other gesture. This happens in milliseconds, making it feel instant! That's why touchscreens don't work well with regular gloves - they don't conduct electricity like your skin does.",
+    "images": [
+      "Cross-section diagram of a capacitive touchscreen showing layers: protective glass, transparent electrode layer, LCD display",
+      "Illustration of a finger touching screen with electrical field lines disrupted at the touch point",
+      "Grid pattern showing how the screen detects exact X,Y coordinates of touch"
+    ]
+  },
+  {
+    "question": "How does a refrigerator keep things cold?",
+    "response": "A refrigerator works by removing heat from inside and releasing it outside - it's essentially a heat pump! Inside, a special liquid called refrigerant flows through coils. When it passes through an expansion valve, it evaporates and becomes very cold. As it flows through the coils inside your fridge, it absorbs heat from your food. The now-warm refrigerant then gets compressed by a compressor, which makes it even hotter. It flows through coils on the back of the fridge where it releases all that heat into your kitchen. Then the cycle repeats! It's not creating cold - it's actively removing heat.",
+    "images": [
+      "Diagram of refrigeration cycle showing: compressor, condenser coils (outside), expansion valve, evaporator coils (inside)",
+      "Illustration showing hot air (red) being released from back of fridge while cold air (blue) circulates inside",
+      "Step-by-step visual of refrigerant changing from liquid to gas and back, with temperature indicators"
+    ]
+  }
+]
+

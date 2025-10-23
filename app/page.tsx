@@ -26,10 +26,6 @@ export default function Home() {
   const [isLoadingImages, setIsLoadingImages] = useState(false);
   const [hasStartedChat, setHasStartedChat] = useState(false);
   const [selectedSession, setSelectedSession] = useState<Session | null>(null);
-  const [lastUserQuery, setLastUserQuery] = useState('');
-  const [lastAssistantResponse, setLastAssistantResponse] = useState('');
-  const sessionStartTime = useRef<number>(Date.now());
-  const messageCount = useRef<number>(0);
 
   const handleNewImages = (newImages: any[]) => {
     setIsLoadingImages(true);
@@ -41,99 +37,13 @@ export default function Home() {
   const handleChatStart = () => {
     if (!hasStartedChat) {
       setHasStartedChat(true);
-      sessionStartTime.current = Date.now();
-      messageCount.current = 0;
     }
   };
 
-  const handleNewMessage = async (userQuery: string, assistantResponse: string) => {
-    setLastUserQuery(userQuery);
-    setLastAssistantResponse(assistantResponse);
-    messageCount.current += 1;
-
-    // Save session immediately (don't wait for page close)
-    try {
-      const sessionDuration = Date.now() - sessionStartTime.current;
-      const response = await fetch('/api/sessions/save', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userQuery,
-          assistantResponse,
-          images: images.slice(0, 10),
-          needsImages: images.length > 0,
-          imageCount: images.length,
-          sessionDuration,
-          messageCount: messageCount.current,
-        }),
-      });
-      
-      if (response.ok) {
-        console.log('✅ Session saved successfully');
-      } else {
-        console.error('❌ Failed to save session:', await response.text());
-      }
-    } catch (error) {
-      console.error('❌ Error saving session:', error);
-    }
+  const handleNewMessage = (userQuery: string, assistantResponse: string) => {
+    // History sidebar shows only curated examples, not user sessions
+    // No need to save user chats to database
   };
-
-  // Save session when user leaves
-  useEffect(() => {
-    const saveSession = async () => {
-      if (!hasStartedChat || !lastUserQuery || !lastAssistantResponse) {
-        return;
-      }
-
-      try {
-        const sessionDuration = Date.now() - sessionStartTime.current;
-        await fetch('/api/sessions/save', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            userQuery: lastUserQuery,
-            assistantResponse: lastAssistantResponse,
-            images: images.slice(0, 10), // Limit to 10 images
-            needsImages: images.length > 0,
-            imageCount: images.length,
-            sessionDuration,
-            messageCount: messageCount.current,
-          }),
-        });
-        console.log('✅ Session saved');
-      } catch (error) {
-        console.error('Failed to save session:', error);
-      }
-    };
-
-        const handleBeforeUnload = () => {
-          // Use sendBeacon for reliable sending on page unload
-          if (hasStartedChat && lastUserQuery && lastAssistantResponse) {
-            const sessionDuration = Date.now() - sessionStartTime.current;
-            const data = {
-              userQuery: lastUserQuery,
-              assistantResponse: lastAssistantResponse,
-              images: images.slice(0, 10),
-              needsImages: images.length > 0,
-              imageCount: images.length,
-              sessionDuration,
-              messageCount: messageCount.current,
-            };
-            
-            // Create a Blob with the correct content-type for sendBeacon
-            const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-            navigator.sendBeacon('/api/sessions/save', blob);
-            console.log('📤 Session data sent via sendBeacon');
-          }
-        };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-      saveSession(); // Also save on component unmount
-    };
-  }, [hasStartedChat, lastUserQuery, lastAssistantResponse, images]);
 
   return (
     <>
