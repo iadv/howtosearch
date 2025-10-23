@@ -77,7 +77,7 @@ export default function Home() {
                 <Sparkles className="w-7 h-7 text-violet-600" />
               </motion.div>
               <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                How To Search
+                Expixi
               </h1>
             </motion.div>
             
@@ -89,7 +89,7 @@ export default function Home() {
                   transition={{ duration: 0.3 }}
                   className="text-slate-600 text-base overflow-hidden"
                 >
-                  Learn anything with AI-powered step-by-step visual guides
+                  Think visually. Turn every question into visual clarity.
                 </motion.p>
               )}
             </AnimatePresence>

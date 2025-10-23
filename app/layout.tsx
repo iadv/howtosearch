@@ -6,8 +6,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "How To Search - AI-Powered Visual Guides",
-  description: "Ask how to do anything and get step-by-step instructions with helpful visuals powered by AI",
+  title: "Expixi - Think Visually",
+  description: "Think visually. Turn every question into visual clarity. Get AI-powered step-by-step explanations with helpful visuals.",
 };
 
 export default function RootLayout({

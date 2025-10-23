@@ -21,25 +21,35 @@ interface ChatInterfaceProps {
 
 const EXAMPLE_PROMPTS = [
   'How to tie a perfect Windsor knot',
-  'How to make authentic Italian espresso',
+  'What to do when food sticks to a pan',
+  'Why do plants need sunlight',
   'How to change a flat tire safely',
+  'What causes rust on metal',
   'How to fold an origami crane',
-  'How to plant tomatoes in your garden',
-  'How to wrap sushi rolls like a chef',
-  'How to braid hair in 3 steps',
-  'How to set up a professional home office',
-  'How to brew the perfect pour-over coffee',
-  'How to do a proper push-up',
+  'Why does bread rise when baking',
+  'How to jumpstart a car battery',
+  'What to do if your phone gets wet',
+  'Why do onions make you cry',
+  'How to remove red wine stains',
+  'What causes hiccups and how to stop them',
+  'How to sharpen kitchen knives properly',
+  'Why does ice float on water',
+  'How to fix a running toilet',
+  'What to do during a power outage',
+  'Why do leaves change color in fall',
+  'How to unclog a drain naturally',
+  'What causes muscle cramps',
   'How to pack a suitcase efficiently',
-  'How to carve a Thanksgiving turkey',
-  'How to assemble flat-pack furniture',
-  'How to clean and maintain leather shoes',
-  'How to cook the perfect steak',
-  'How to organize cables and cords',
-  'How to apply makeup for beginners',
-  'How to prune rose bushes',
+  'Why does coffee keep you awake',
   'How to parallel park perfectly',
-  'How to build a campfire safely'
+  'What to do if you lock keys in car',
+  'Why do cats purr',
+  'How to stop a nosebleed quickly',
+  'What causes brain freeze',
+  'How to remove gum from clothes',
+  'Why does metal feel colder than wood',
+  'How to treat a minor burn',
+  'What to do when smoke alarm won\'t stop'
 ];
 
 export default function ChatInterface({ onNewImages, onChatStart }: ChatInterfaceProps) {
@@ -158,8 +168,8 @@ export default function ChatInterface({ onNewImages, onChatStart }: ChatInterfac
               >
                 <Sparkles className="w-10 h-10 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">What would you like to learn?</h3>
-              <p className="text-slate-600 mb-8 max-w-md">Ask me how to do anything and get step-by-step guidance with visual aids</p>
+              <h3 className="text-2xl font-bold mb-3 text-slate-900">What would you like to understand?</h3>
+              <p className="text-slate-600 mb-8 max-w-md">Ask me anything and get visual, step-by-step explanations</p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-2xl w-full">
                 {EXAMPLE_PROMPTS.slice(0, 8).map((prompt, idx) => (
@@ -259,7 +269,7 @@ export default function ChatInterface({ onNewImages, onChatStart }: ChatInterfac
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask how to do something..."
+            placeholder="Ask me anything..."
             disabled={isLoading}
             className="flex-1 border-slate-200 focus-visible:ring-violet-500 bg-white shadow-sm rounded-xl h-12 text-base px-4"
           />
