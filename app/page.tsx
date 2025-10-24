@@ -96,7 +96,7 @@ export default function Home() {
         </motion.div>
       )}
 
-      <main className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-violet-50 to-indigo-50 relative">
+      <main className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-indigo-50 relative">
       {/* Enhanced Background Effects */}
       <motion.div
         className="absolute top-0 left-0 w-[600px] h-[600px] bg-violet-300/30 rounded-full mix-blend-multiply filter blur-3xl pointer-events-none"
