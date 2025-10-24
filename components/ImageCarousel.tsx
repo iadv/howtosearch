@@ -54,10 +54,10 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
           >
             <ImageIcon className="w-12 h-12 text-white" />
           </motion.div>
-          <h3 className="text-2xl font-bold text-slate-900 mb-3">
+          <h3 className="text-lg sm:text-2xl font-bold text-slate-900 mb-3">
             Visuals
           </h3>
-          <p className="text-sm text-slate-600 max-w-xs leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-600 max-w-xs leading-relaxed">
             Visual guides will appear here as you learn
           </p>
         </motion.div>
@@ -71,8 +71,8 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
       <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-200/60 bg-white/80 backdrop-blur-sm">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="font-bold text-lg text-slate-900">Visuals</h3>
-            <p className="text-xs text-slate-500 mt-1">
+            <h3 className="font-bold text-base sm:text-lg text-slate-900">Visuals</h3>
+            <p className="text-[10px] sm:text-xs text-slate-500 mt-1">
               {images.length} {images.length === 1 ? 'guide' : 'guides'}
             </p>
           </div>
@@ -88,7 +88,7 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
                   <ChevronLeft className="h-5 w-5 text-slate-700" />
                 </Button>
               </motion.div>
-              <span className="text-sm font-semibold text-slate-700 min-w-[3rem] text-center">
+              <span className="text-xs sm:text-sm font-semibold text-slate-700 min-w-[3rem] text-center">
                 {currentIndex + 1} / {images.length}
               </span>
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
@@ -121,7 +121,7 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
               >
                 <Loader2 className="h-16 w-16 text-violet-500 mx-auto mb-6" />
               </motion.div>
-              <p className="text-base text-slate-700 font-medium">Generating visuals...</p>
+              <p className="text-sm sm:text-base text-slate-700 font-medium">Generating visuals...</p>
             </div>
           </motion.div>
         ) : (
@@ -158,7 +158,7 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
                     <div className="flex items-center justify-center p-12">
                       <div className="text-center">
                         <ImageIcon className="w-16 h-16 text-slate-400 mx-auto mb-4" />
-                        <p className="text-sm text-slate-500">
+                        <p className="text-xs sm:text-sm text-slate-500">
                           {images[currentIndex].error || 'Image not available'}
                         </p>
                       </div>
@@ -204,7 +204,7 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
                   transition={{ delay: 0.2 }}
                   className="px-4 py-3 bg-white/90 backdrop-blur-sm rounded-2xl border border-slate-200/60 shadow-sm"
                 >
-                  <p className="text-sm text-slate-700 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
                     {images[currentIndex].prompt}
                   </p>
                 </motion.div>

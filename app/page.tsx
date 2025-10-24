@@ -164,7 +164,7 @@ export default function Home() {
                 >
                   <Sparkles className="w-7 h-7 text-violet-600" />
                 </motion.div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
                   Expixi
                 </h1>
               </motion.div>
@@ -179,7 +179,7 @@ export default function Home() {
                   initial={{ opacity: 1, height: 'auto', marginTop: '0.25rem' }}
                   exit={{ opacity: 0, height: 0, marginTop: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="text-slate-600 text-base overflow-hidden"
+                  className="text-slate-600 text-sm sm:text-base overflow-hidden"
                 >
                   Think visually. Turn every question into visual clarity.
                 </motion.p>

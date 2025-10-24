@@ -174,15 +174,15 @@ export default function ChatInterface({ onNewImages, onChatStart, onNewMessage }
               >
                 <Sparkles className="w-10 h-10 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">What would you like to understand?</h3>
-              <p className="text-slate-600 mb-8 max-w-md">Ask me anything and get visual, step-by-step explanations</p>
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 text-slate-900">What would you like to understand?</h3>
+              <p className="text-slate-600 mb-6 sm:mb-8 max-w-md text-sm sm:text-base">Ask me anything and get visual, step-by-step explanations</p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-2xl w-full">
                 {EXAMPLE_PROMPTS.slice(0, 8).map((prompt, idx) => (
                   <motion.button
                     key={idx}
                     onClick={() => setInput(prompt)}
-                    className="px-4 py-3 text-sm text-left rounded-xl bg-white border border-slate-200 text-slate-700 hover:border-violet-400 hover:bg-violet-50 hover:text-violet-700 transition-all shadow-sm"
+                    className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm text-left rounded-xl bg-white border border-slate-200 text-slate-700 hover:border-violet-400 hover:bg-violet-50 hover:text-violet-700 transition-all shadow-sm"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     initial={{ opacity: 0, y: 10 }}
@@ -226,7 +226,7 @@ export default function ChatInterface({ onNewImages, onChatStart, onNewMessage }
                   whileHover={{ y: -2 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
+                  <p className="text-xs sm:text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
                 </motion.div>
               </motion.div>
             ))}
@@ -277,13 +277,13 @@ export default function ChatInterface({ onNewImages, onChatStart, onNewMessage }
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask me anything..."
             disabled={isLoading}
-            className="flex-1 border-slate-200 focus-visible:ring-violet-500 bg-white shadow-sm rounded-xl h-12 text-base px-4 touch-manipulation"
+            className="flex-1 border-slate-200 focus-visible:ring-violet-500 bg-white shadow-sm rounded-xl h-10 sm:h-12 text-sm sm:text-base px-3 sm:px-4 touch-manipulation"
           />
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               type="submit"
               disabled={!input.trim() || isLoading}
-              className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 shadow-lg shadow-violet-500/30 rounded-xl px-6 sm:px-8 h-12 touch-manipulation"
+              className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 shadow-lg shadow-violet-500/30 rounded-xl px-4 sm:px-6 md:px-8 h-10 sm:h-12 touch-manipulation"
             >
               {isLoading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />

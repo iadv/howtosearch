@@ -128,13 +128,13 @@ export default function SearchPage() {
                 </Button>
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-violet-600" />
-                  <h1 className="text-xl font-bold text-slate-900">Expixi</h1>
+                  <h1 className="text-lg sm:text-xl font-bold text-slate-900">Expixi</h1>
                 </div>
               </div>
               
               <div className="flex items-center gap-4">
                 {/* Session Meta */}
-                <div className="flex items-center gap-4 text-sm text-slate-500">
+                <div className="flex items-center gap-4 text-xs sm:text-sm text-slate-500">
                   <span className="flex items-center gap-1">
                     <Clock className="w-4 h-4" />
                     {getRelativeTime(session.createdAt)}
@@ -176,10 +176,10 @@ export default function SearchPage() {
                     <Sparkles className="w-4 h-4 text-white" />
                   </div>
                   <div className="flex-1">
-                    <h2 className="text-xl font-semibold text-slate-900 mb-2">
+                    <h2 className="text-lg sm:text-xl font-semibold text-slate-900 mb-2">
                       {session.userQuery}
                     </h2>
-                    <div className="flex items-center gap-4 text-sm text-slate-500">
+                    <div className="flex items-center gap-4 text-xs sm:text-sm text-slate-500">
                       <span className="flex items-center gap-1">
                         <ImageIcon className="w-4 h-4" />
                         {session.imageCount} visual{session.imageCount !== 1 ? 's' : ''}
@@ -190,7 +190,7 @@ export default function SearchPage() {
                 </div>
                 
                 <div className="prose prose-slate max-w-none">
-                  <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">
+                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed whitespace-pre-wrap">
                     {session.assistantResponse}
                   </p>
                 </div>

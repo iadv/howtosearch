@@ -221,8 +221,8 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
               {/* Header */}
               <div className="flex-shrink-0 p-4 sm:p-6 border-b border-slate-200">
                 <div className="flex items-center justify-between mb-2">
-                  <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-violet-600" />
+                  <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-violet-600" />
                     Recent Searches
                   </h2>
                   <Button
@@ -234,7 +234,7 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
                     <ChevronLeft className="w-4 h-4" />
                   </Button>
                 </div>
-                <p className="text-sm text-slate-500">
+                <p className="text-xs sm:text-sm text-slate-500">
                   See what others are exploring
                 </p>
               </div>
@@ -279,7 +279,7 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
                               <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-violet-500 to-indigo-500 flex items-center justify-center">
                                 <Sparkles className="w-3 h-3 text-white" />
                               </div>
-                              <h3 className="flex-1 font-semibold text-sm text-slate-900 line-clamp-2 group-hover:text-violet-600 transition-colors">
+                              <h3 className="flex-1 font-semibold text-xs sm:text-sm text-slate-900 line-clamp-2 group-hover:text-violet-600 transition-colors">
                                 {session.userQuery}
                               </h3>
                             </div>
@@ -308,12 +308,12 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
                             )}
 
                             {/* Response Preview */}
-                            <p className="text-xs text-slate-600 mb-3 line-clamp-2 leading-relaxed">
+                            <p className="text-[10px] sm:text-xs text-slate-600 mb-3 line-clamp-2 leading-relaxed">
                               {session.assistantResponse.substring(0, 120)}...
                             </p>
 
                             {/* Meta Info Bar */}
-                            <div className="flex items-center justify-between text-xs mb-2">
+                            <div className="flex items-center justify-between text-[10px] sm:text-xs mb-2">
                               <div className="flex items-center gap-3">
                                 <span className="flex items-center gap-1 text-slate-400">
                                   <Clock className="w-3 h-3" />
@@ -391,7 +391,7 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
                                     <Share2 className="w-4 h-4" />
                                   )}
                                 </motion.button>
-                                <span className="text-xs text-slate-400">
+                                <span className="text-[10px] sm:text-xs text-slate-400">
                                   {session.score >= 400 ? '🔥 Hot' : session.score >= 300 ? '👍 Good' : session.score >= 200 ? '✨ New' : '💡 Growing'}
                                 </span>
                               </div>
@@ -411,7 +411,7 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
 
               {/* Footer */}
               <div className="flex-shrink-0 p-4 border-t border-slate-200 bg-slate-50/50">
-                <p className="text-xs text-slate-500 text-center">
+                <p className="text-[10px] sm:text-xs text-slate-500 text-center">
                   Showing {sessions.length} recent {sessions.length === 1 ? 'search' : 'searches'}
                 </p>
               </div>
