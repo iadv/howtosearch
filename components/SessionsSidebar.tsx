@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Clock, MapPin, Image as ImageIcon, Sparkles, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Clock, MapPin, Image as ImageIcon, Sparkles, ThumbsUp, ThumbsDown, Share2, Copy, Check } from 'lucide-react';
 import NextImage from 'next/image';
 import { Card } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -30,6 +30,7 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
   const [sessions, setSessions] = useState<Session[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [userVotes, setUserVotes] = useState<Record<string, 'up' | 'down'>>({});
+  const [copiedStates, setCopiedStates] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     fetchSessions();
@@ -111,10 +112,53 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
         setUserVotes(newVotes);
         localStorage.setItem('userVotes', JSON.stringify(newVotes));
       }
-    } catch (error) {
-      console.error('Failed to vote:', error);
-    }
-  };
+        } catch (error) {
+          console.error('Failed to vote:', error);
+        }
+      };
+
+      const generateShareUrl = (sessionId: string) => {
+        const baseUrl = window.location.origin;
+        return `${baseUrl}/search/${sessionId}`;
+      };
+
+      const handleShare = async (sessionId: string, e: React.MouseEvent) => {
+        e.stopPropagation(); // Prevent card click
+        
+        const shareUrl = generateShareUrl(sessionId);
+        
+        try {
+          // Try native share API first (mobile)
+          if (navigator.share) {
+            await navigator.share({
+              title: 'Check out this search on Expixi',
+              text: 'Look at this interesting search result!',
+              url: shareUrl,
+            });
+          } else {
+            // Fallback to clipboard
+            await navigator.clipboard.writeText(shareUrl);
+            
+            // Show copied state
+            setCopiedStates(prev => ({ ...prev, [sessionId]: true }));
+            setTimeout(() => {
+              setCopiedStates(prev => ({ ...prev, [sessionId]: false }));
+            }, 2000);
+          }
+        } catch (error) {
+          console.error('Failed to share:', error);
+          // Fallback to manual copy
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            setCopiedStates(prev => ({ ...prev, [sessionId]: true }));
+            setTimeout(() => {
+              setCopiedStates(prev => ({ ...prev, [sessionId]: false }));
+            }, 2000);
+          } catch (clipboardError) {
+            console.error('Failed to copy to clipboard:', clipboardError);
+          }
+        }
+      };
 
   const getRelativeTime = (date: string) => {
     const seconds = Math.floor((new Date().getTime() - new Date(date).getTime()) / 1000);
@@ -172,10 +216,10 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
               animate={{ x: 0 }}
               exit={{ x: -400 }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed left-0 top-0 bottom-0 w-96 bg-white/95 backdrop-blur-md border-r border-slate-200 shadow-2xl z-50 flex flex-col"
+              className="fixed left-0 top-0 bottom-0 w-full sm:w-96 bg-white/95 backdrop-blur-md border-r border-slate-200 shadow-2xl z-50 flex flex-col"
             >
               {/* Header */}
-              <div className="flex-shrink-0 p-6 border-b border-slate-200">
+              <div className="flex-shrink-0 p-4 sm:p-6 border-b border-slate-200">
                 <div className="flex items-center justify-between mb-2">
                   <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
                     <Sparkles className="w-5 h-5 text-violet-600" />
@@ -195,9 +239,9 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
                 </p>
               </div>
 
-              {/* Sessions List */}
-              <ScrollArea className="flex-1">
-                <div className="p-4 space-y-3">
+                  {/* Sessions List */}
+                  <ScrollArea className="flex-1">
+                    <div className="p-3 sm:p-4 space-y-3">
                   {isLoading ? (
                     <div className="flex items-center justify-center py-12">
                       <motion.div
@@ -329,9 +373,28 @@ export default function SessionsSidebar({ onSessionClick }: SessionsSidebarProps
                                   }`} />
                                 </motion.button>
                               </div>
-                              <span className="text-xs text-slate-400">
-                                {session.score >= 400 ? '🔥 Hot' : session.score >= 300 ? '👍 Good' : session.score >= 200 ? '✨ New' : '💡 Growing'}
-                              </span>
+                              <div className="flex items-center gap-2">
+                                <motion.button
+                                  whileHover={{ scale: 1.1 }}
+                                  whileTap={{ scale: 0.9 }}
+                                  onClick={(e) => handleShare(session.id, e)}
+                                  className={`p-1.5 rounded-full transition-all duration-200 ${
+                                    copiedStates[session.id]
+                                      ? 'bg-emerald-100 text-emerald-700' 
+                                      : 'hover:bg-violet-50 text-violet-600'
+                                  }`}
+                                  title={copiedStates[session.id] ? 'Copied!' : 'Share this search'}
+                                >
+                                  {copiedStates[session.id] ? (
+                                    <Check className="w-4 h-4" />
+                                  ) : (
+                                    <Share2 className="w-4 h-4" />
+                                  )}
+                                </motion.button>
+                                <span className="text-xs text-slate-400">
+                                  {session.score >= 400 ? '🔥 Hot' : session.score >= 300 ? '👍 Good' : session.score >= 200 ? '✨ New' : '💡 Growing'}
+                                </span>
+                              </div>
                             </div>
                           </div>
 

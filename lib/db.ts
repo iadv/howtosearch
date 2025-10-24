@@ -189,7 +189,7 @@ export async function getAnalytics() {
     const sql = getDb();
     if (!sql) return null;
 
-    const [stats] = await sql`
+    const statsResult = await sql`
       SELECT 
         COUNT(*) as total_chats,
         COUNT(*) FILTER (WHERE success = true) as successful_chats,
@@ -200,7 +200,7 @@ export async function getAnalytics() {
       WHERE created_at > NOW() - INTERVAL '7 days'
     `;
     
-    const [imageStats] = await sql`
+    const imageStatsResult = await sql`
       SELECT 
         COUNT(*) as total_generations,
         SUM(success_count) as total_images_generated,
@@ -211,8 +211,8 @@ export async function getAnalytics() {
     `;
     
     return {
-      chat: stats,
-      images: imageStats,
+      chat: Array.isArray(statsResult) ? statsResult[0] : statsResult,
+      images: Array.isArray(imageStatsResult) ? imageStatsResult[0] : imageStatsResult,
     };
   } catch (error) {
     console.error('❌ Failed to fetch analytics:', error);

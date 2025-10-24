@@ -270,20 +270,20 @@ export default function ChatInterface({ onNewImages, onChatStart, onNewMessage }
       </ScrollArea>
 
       {/* Input */}
-      <div className="p-6 border-t border-slate-200/60 bg-white/80 backdrop-blur-sm">
-        <form onSubmit={handleSubmit} className="flex gap-3">
+      <div className="p-4 sm:p-6 border-t border-slate-200/60 bg-white/80 backdrop-blur-sm">
+        <form onSubmit={handleSubmit} className="flex gap-2 sm:gap-3">
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask me anything..."
             disabled={isLoading}
-            className="flex-1 border-slate-200 focus-visible:ring-violet-500 bg-white shadow-sm rounded-xl h-12 text-base px-4"
+            className="flex-1 border-slate-200 focus-visible:ring-violet-500 bg-white shadow-sm rounded-xl h-12 text-base px-4 touch-manipulation"
           />
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               type="submit"
               disabled={!input.trim() || isLoading}
-              className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 shadow-lg shadow-violet-500/30 rounded-xl px-8 h-12"
+              className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 shadow-lg shadow-violet-500/30 rounded-xl px-6 sm:px-8 h-12 touch-manipulation"
             >
               {isLoading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />

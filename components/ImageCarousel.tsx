@@ -68,7 +68,7 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
   return (
     <Card className="h-full flex flex-col overflow-hidden glass-effect shadow-2xl border-0">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-slate-200/60 bg-white/80 backdrop-blur-sm">
+      <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-200/60 bg-white/80 backdrop-blur-sm">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="font-bold text-lg text-slate-900">Visuals</h3>
@@ -83,7 +83,7 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
                   variant="ghost"
                   size="icon"
                   onClick={prevImage}
-                  className="h-9 w-9 rounded-xl hover:bg-violet-100"
+                  className="h-10 w-10 sm:h-9 sm:w-9 rounded-xl hover:bg-violet-100 touch-manipulation"
                 >
                   <ChevronLeft className="h-5 w-5 text-slate-700" />
                 </Button>
@@ -96,7 +96,7 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
                   variant="ghost"
                   size="icon"
                   onClick={nextImage}
-                  className="h-9 w-9 rounded-xl hover:bg-violet-100"
+                  className="h-10 w-10 sm:h-9 sm:w-9 rounded-xl hover:bg-violet-100 touch-manipulation"
                 >
                   <ChevronRight className="h-5 w-5 text-slate-700" />
                 </Button>
@@ -133,10 +133,10 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="p-6 flex flex-col gap-4 min-h-full relative"
+                className="p-4 sm:p-6 flex flex-col gap-4 min-h-full relative"
               >
                 <motion.div
-                  className="relative rounded-3xl overflow-hidden bg-slate-100 shadow-2xl min-h-[400px] flex items-center justify-center group"
+                  className="relative rounded-3xl overflow-hidden bg-slate-100 shadow-2xl min-h-[300px] max-h-[500px] flex items-center justify-center group"
                   whileHover={{ scale: 1.01 }}
                   transition={{ type: "spring", stiffness: 300 }}
                   style={{ aspectRatio: '4/3' }}
@@ -147,7 +147,7 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
                         src={images[currentIndex].imageUrl!}
                         alt={images[currentIndex].prompt}
                         fill
-                        className="object-contain p-4"
+                        className="object-contain p-2"
                         unoptimized
                         onError={(e) => {
                           console.error('Image failed to load:', images[currentIndex].imageUrl);
@@ -169,29 +169,29 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
                   {images.length > 1 && (
                     <>
                       <motion.div
-                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 z-20 opacity-80 group-hover:opacity-100 transition-opacity"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                       >
                         <Button
                           onClick={prevImage}
                           size="icon"
-                          className="h-14 w-14 rounded-full bg-white/95 hover:bg-white shadow-2xl border-2 border-violet-200"
+                          className="h-12 w-12 sm:h-12 sm:w-12 rounded-full bg-white/95 hover:bg-white shadow-lg border-2 border-violet-200 touch-manipulation"
                         >
-                          <ChevronLeft className="h-7 w-7 text-violet-600" />
+                          <ChevronLeft className="h-6 w-6 text-violet-600" />
                         </Button>
                       </motion.div>
                       <motion.div
-                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 z-20 opacity-80 group-hover:opacity-100 transition-opacity"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                       >
                         <Button
                           onClick={nextImage}
                           size="icon"
-                          className="h-14 w-14 rounded-full bg-white/95 hover:bg-white shadow-2xl border-2 border-violet-200"
+                          className="h-12 w-12 sm:h-12 sm:w-12 rounded-full bg-white/95 hover:bg-white shadow-lg border-2 border-violet-200 touch-manipulation"
                         >
-                          <ChevronRight className="h-7 w-7 text-violet-600" />
+                          <ChevronRight className="h-6 w-6 text-violet-600" />
                         </Button>
                       </motion.div>
                     </>
@@ -216,19 +216,19 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
 
       {/* Thumbnail Strip with ScrollArea */}
       {images.length > 1 && !isLoading && (
-        <div className="p-4 border-t border-slate-200/60 bg-white/80 backdrop-blur-sm">
+        <div className="p-2 sm:p-3 border-t border-slate-200/60 bg-white/80 backdrop-blur-sm">
           <ScrollArea className="w-full">
-            <div className="flex gap-3 pb-2">
+            <div className="flex gap-2 pb-2">
               {images.map((img, idx) => (
                 <motion.button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`flex-shrink-0 w-20 h-20 rounded-2xl overflow-hidden border-2 transition-all ${
+                  className={`flex-shrink-0 w-16 h-16 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 transition-all touch-manipulation ${
                     idx === currentIndex
-                      ? 'border-violet-500 ring-4 ring-violet-200 shadow-lg'
+                      ? 'border-violet-500 ring-2 ring-violet-200 shadow-md'
                       : 'border-slate-200 hover:border-violet-300'
                   }`}
-                  whileHover={{ scale: 1.1, y: -4 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
@@ -236,14 +236,14 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
                     <Image
                       src={img.imageUrl}
                       alt={`Thumbnail ${idx + 1}`}
-                      width={80}
-                      height={80}
+                      width={64}
+                      height={64}
                       className="object-cover w-full h-full"
                       unoptimized
                     />
                   ) : (
                     <div className="w-full h-full bg-slate-100 flex items-center justify-center">
-                      <ImageIcon className="w-6 h-6 text-slate-400" />
+                      <ImageIcon className="w-4 h-4 text-slate-400" />
                     </div>
                   )}
                 </motion.button>

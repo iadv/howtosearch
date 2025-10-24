@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
     const city = req.geo?.city || req.headers.get('x-vercel-ip-city') || null;
 
     // Insert session
-    const [session] = await sql`
+    const sessionResult = await sql`
       INSERT INTO sessions (
         user_query,
         assistant_response,
@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
       RETURNING id, created_at
     `;
 
-    console.log('✅ Session saved:', session.id);
+    console.log('✅ Session saved:', sessionResult[0]?.id);
 
     // Cleanup old sessions (keep only 50) - FIFO
     await sql`
@@ -98,8 +98,8 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      sessionId: session.id,
-      createdAt: session.created_at,
+      sessionId: sessionResult[0]?.id,
+      createdAt: sessionResult[0]?.created_at,
     });
   } catch (error) {
     console.error('❌ Error saving session:', error);

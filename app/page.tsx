@@ -7,8 +7,9 @@ import SearchTicker from '@/components/SearchTicker';
 import SessionsSidebar from '@/components/SessionsSidebar';
 import SessionViewer from '@/components/SessionViewer';
 import SubmitSearchModal from '@/components/SubmitSearchModal';
+import ContactModal from '@/components/ContactModal';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Send } from 'lucide-react';
+import { Sparkles, Send, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface Session {
@@ -29,6 +30,7 @@ export default function Home() {
   const [hasStartedChat, setHasStartedChat] = useState(false);
   const [selectedSession, setSelectedSession] = useState<Session | null>(null);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [lastQuery, setLastQuery] = useState('');
   const [lastResponse, setLastResponse] = useState('');
 
@@ -68,6 +70,12 @@ export default function Home() {
         userQuery={lastQuery}
         assistantResponse={lastResponse}
         images={images}
+      />
+
+      {/* Contact Modal */}
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
       />
 
       {/* Floating Submit Button */}
@@ -118,7 +126,7 @@ export default function Home() {
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative z-10 flex flex-col h-full p-6 gap-4">
+      <div className="relative z-10 flex flex-col h-full p-4 sm:p-6 gap-4">
         {/* Premium Header - Fixed height */}
         <motion.header
           initial={{ opacity: 0, y: -30 }}
@@ -126,22 +134,44 @@ export default function Home() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="flex-shrink-0"
         >
-          <div className="max-w-[1800px] mx-auto text-center">
-            <motion.div
-              className="inline-flex items-center gap-3"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 400 }}
-            >
+          <div className="max-w-[1800px] mx-auto">
+            <div className="flex items-center justify-between mb-4">
+              {/* Contact Button */}
               <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
               >
-                <Sparkles className="w-7 h-7 text-violet-600" />
+                <Button
+                  onClick={() => setIsContactModalOpen(true)}
+                  variant="outline"
+                  className="bg-white/90 backdrop-blur-sm border-violet-200 hover:bg-violet-50 shadow-lg"
+                >
+                  <Mail className="w-4 h-4 mr-2" />
+                  Contact
+                </Button>
               </motion.div>
-              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                Expixi
-              </h1>
-            </motion.div>
+
+              {/* Logo */}
+              <motion.div
+                className="inline-flex items-center gap-3"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                >
+                  <Sparkles className="w-7 h-7 text-violet-600" />
+                </motion.div>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                  Expixi
+                </h1>
+              </motion.div>
+
+              {/* Spacer for balance */}
+              <div className="w-20"></div>
+            </div>
             
             <AnimatePresence>
               {!hasStartedChat && (
