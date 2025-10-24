@@ -96,7 +96,7 @@ export default function Home() {
         </motion.div>
       )}
 
-      <main className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-indigo-50 relative">
+      <main className="w-full min-h-screen max-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-indigo-50 relative overflow-y-auto">
       {/* Enhanced Background Effects */}
       <motion.div
         className="absolute top-0 left-0 w-[600px] h-[600px] bg-violet-300/30 rounded-full mix-blend-multiply filter blur-3xl pointer-events-none"
@@ -189,12 +189,12 @@ export default function Home() {
           </div>
         </motion.header>
 
-        {/* Main Content Area - Fully flexible and scrollable */}
+        {/* Main Content Area - Fixed height to prevent excessive scrolling */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-[1800px] mx-auto w-full grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6"
+          className="max-w-[1800px] mx-auto w-full grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6 h-[600px]"
         >
           {/* Chat Panel */}
           <div className="lg:col-span-3">
