@@ -185,10 +185,11 @@ const BIOCHEM_PATTERNS = [
   /\b(make|grow)\s*anthrax\b/i, /\bbioweapon\b/i
 ];
 
-// Risky "How To" Combinations
+// Risky "How To" Combinations 'how to', 'best way to', 'steps to', 'guide to',
+//  'tips to', 'methods to', 'tutorial to'
 const HOW_TO_VERBS = [
-  'how to', 'best way to', 'steps to', 'guide to',
-  'tips to', 'methods to', 'tutorial to'
+  'best way to', 'steps to', 'guide to',
+  'tips to', 'methods to'
 ];
 
 const VIOLENT_OBJECTS = [
@@ -197,9 +198,8 @@ const VIOLENT_OBJECTS = [
 ];
 
 const VULNERABLE_TARGETS = [
-  'someone', 'person', 'people', 'neighbor', 'partner',
-  'spouse', 'teacher', 'boss', 'child', 'children',
-  'animal', 'pet', 'cat', 'dog'
+  'people', 'neighbor', 'partner',
+  'spouse', 'teacher', 'boss', 'child', 'children'
 ];
 
 // Allowlist for legitimate contexts
