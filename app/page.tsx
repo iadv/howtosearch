@@ -96,7 +96,7 @@ export default function Home() {
         </motion.div>
       )}
 
-      <main className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-violet-50 to-indigo-50 relative flex flex-col">
+      <main className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-violet-50 to-indigo-50 relative">
       {/* Enhanced Background Effects */}
       <motion.div
         className="absolute top-0 left-0 w-[600px] h-[600px] bg-violet-300/30 rounded-full mix-blend-multiply filter blur-3xl pointer-events-none"
@@ -126,7 +126,7 @@ export default function Home() {
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative z-10 flex flex-col min-h-full p-3 sm:p-4 gap-3">
+      <div className="relative z-10 p-3 sm:p-4 space-y-4">
         {/* Premium Header - Thin and compact */}
         <motion.header
           initial={{ opacity: 0, y: -20 }}
@@ -189,15 +189,15 @@ export default function Home() {
           </div>
         </motion.header>
 
-        {/* Main Content Area - Flexible height */}
+        {/* Main Content Area - Fully flexible and scrollable */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="flex-1 max-w-[1800px] mx-auto w-full grid grid-cols-1 lg:grid-cols-5 gap-6 min-h-[600px]"
+          className="max-w-[1800px] mx-auto w-full grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6"
         >
           {/* Chat Panel */}
-          <div className="lg:col-span-3 h-full min-h-0">
+          <div className="lg:col-span-3">
             <ChatInterface 
               onNewImages={handleNewImages} 
               onChatStart={handleChatStart}
@@ -206,7 +206,7 @@ export default function Home() {
           </div>
 
           {/* Visuals Panel */}
-          <div className="lg:col-span-2 h-full min-h-0">
+          <div className="lg:col-span-2">
             <ImageCarousel images={images} isLoading={isLoadingImages} />
           </div>
         </motion.div>
