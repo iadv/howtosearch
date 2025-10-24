@@ -40,7 +40,7 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
 
   if (images.length === 0 && !isLoading) {
     return (
-      <Card className="h-full flex items-center justify-center glass-effect shadow-2xl border-0 overflow-hidden">
+      <Card className="h-full flex items-center justify-center glass-effect shadow-2xl border-0 overflow-hidden min-h-[500px]">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -66,7 +66,7 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
   }
 
   return (
-    <Card className="h-full flex flex-col overflow-hidden glass-effect shadow-2xl border-0">
+    <Card className="h-full flex flex-col overflow-hidden glass-effect shadow-2xl border-0 min-h-[500px]">
       {/* Header */}
       <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-200/60 bg-white/80 backdrop-blur-sm">
         <div className="flex items-center justify-between">

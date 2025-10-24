@@ -96,7 +96,7 @@ export default function Home() {
         </motion.div>
       )}
 
-      <main className="h-screen w-full bg-gradient-to-br from-slate-50 via-violet-50 to-indigo-50 relative overflow-hidden flex flex-col">
+      <main className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-violet-50 to-indigo-50 relative flex flex-col">
       {/* Enhanced Background Effects */}
       <motion.div
         className="absolute top-0 left-0 w-[600px] h-[600px] bg-violet-300/30 rounded-full mix-blend-multiply filter blur-3xl pointer-events-none"
@@ -126,7 +126,7 @@ export default function Home() {
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative z-10 flex flex-col h-full p-4 sm:p-6 gap-4">
+      <div className="relative z-10 flex flex-col min-h-full p-4 sm:p-6 gap-4">
         {/* Premium Header - Fixed height */}
         <motion.header
           initial={{ opacity: 0, y: -30 }}
@@ -188,12 +188,12 @@ export default function Home() {
           </div>
         </motion.header>
 
-        {/* Main Content Area - Flex grow */}
+        {/* Main Content Area - Flexible height */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="flex-1 max-w-[1800px] mx-auto w-full grid grid-cols-1 lg:grid-cols-5 gap-6 min-h-0"
+          className="flex-1 max-w-[1800px] mx-auto w-full grid grid-cols-1 lg:grid-cols-5 gap-6 min-h-[600px]"
         >
           {/* Chat Panel */}
           <div className="lg:col-span-3 h-full min-h-0">

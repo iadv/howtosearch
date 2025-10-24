@@ -156,7 +156,7 @@ export default function ChatInterface({ onNewImages, onChatStart, onNewMessage }
   };
 
   return (
-    <Card className="h-full flex flex-col overflow-hidden glass-effect shadow-2xl border-0">
+    <Card className="h-full flex flex-col overflow-hidden glass-effect shadow-2xl border-0 min-h-[500px]">
       {/* Messages with proper scrolling */}
       <ScrollArea className="flex-1 px-6">
         <div className="py-6 space-y-6 min-h-full flex flex-col">
