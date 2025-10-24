@@ -126,16 +126,16 @@ export default function Home() {
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative z-10 flex flex-col min-h-full p-4 sm:p-6 gap-4">
-        {/* Premium Header - Fixed height */}
+      <div className="relative z-10 flex flex-col min-h-full p-3 sm:p-4 gap-3">
+        {/* Premium Header - Thin and compact */}
         <motion.header
-          initial={{ opacity: 0, y: -30 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="flex-shrink-0"
         >
           <div className="max-w-[1800px] mx-auto">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               {/* Contact Button */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -145,16 +145,17 @@ export default function Home() {
                 <Button
                   onClick={() => setIsContactModalOpen(true)}
                   variant="outline"
-                  className="bg-white/90 backdrop-blur-sm border-violet-200 hover:bg-violet-50 shadow-lg"
+                  size="sm"
+                  className="bg-white/90 backdrop-blur-sm border-violet-200 hover:bg-violet-50 shadow-lg text-xs sm:text-sm"
                 >
-                  <Mail className="w-4 h-4 mr-2" />
+                  <Mail className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                   Contact
                 </Button>
               </motion.div>
 
               {/* Logo */}
               <motion.div
-                className="inline-flex items-center gap-3"
+                className="inline-flex items-center gap-2 sm:gap-3"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
@@ -162,24 +163,24 @@ export default function Home() {
                   animate={{ rotate: 360 }}
                   transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                 >
-                  <Sparkles className="w-7 h-7 text-violet-600" />
+                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-violet-600" />
                 </motion.div>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
                   Expixi
                 </h1>
               </motion.div>
 
               {/* Spacer for balance */}
-              <div className="w-20"></div>
+              <div className="w-16 sm:w-20"></div>
             </div>
             
             <AnimatePresence>
               {!hasStartedChat && (
                 <motion.p
-                  initial={{ opacity: 1, height: 'auto', marginTop: '0.25rem' }}
+                  initial={{ opacity: 1, height: 'auto', marginTop: '0.125rem' }}
                   exit={{ opacity: 0, height: 0, marginTop: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="text-slate-600 text-sm sm:text-base overflow-hidden"
+                  className="text-slate-600 text-xs sm:text-sm overflow-hidden"
                 >
                   Think visually. Turn every question into visual clarity.
                 </motion.p>
