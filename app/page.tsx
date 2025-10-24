@@ -194,7 +194,7 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-[1800px] mx-auto w-full grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6 h-[600px]"
+          className="max-w-[1800px] mx-auto w-full grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6 h-[700px]"
         >
           {/* Chat Panel */}
           <div className="lg:col-span-3">
