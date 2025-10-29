@@ -107,7 +107,7 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
       </div>
 
       {/* Image Display with ScrollArea */}
-      <ScrollArea className="flex-1 relative">
+      <ScrollArea className="flex-1 relative overflow-x-auto">
         {isLoading ? (
           <motion.div
             initial={{ opacity: 0 }}
@@ -133,21 +133,28 @@ export default function ImageCarousel({ images, isLoading }: ImageCarouselProps)
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="p-4 sm:p-6 flex flex-col gap-4 min-h-full relative"
+                className="p-2 sm:p-4 md:p-6 flex flex-col gap-3 sm:gap-4 min-h-full relative"
               >
                 <motion.div
-                  className="relative rounded-3xl overflow-hidden bg-slate-100 shadow-2xl min-h-[300px] max-h-[500px] flex items-center justify-center group"
+                  className="relative rounded-3xl overflow-x-auto overflow-y-hidden bg-slate-100 shadow-2xl min-h-[250px] sm:min-h-[300px] max-h-[400px] sm:max-h-[500px] flex items-center justify-center group w-full touch-pan-x"
+                  style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'thin' }}
                   whileHover={{ scale: 1.01 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  style={{ aspectRatio: '4/3' }}
                 >
                   {images[currentIndex].success && images[currentIndex].imageUrl ? (
-                    <div className="relative w-full h-full">
+                    <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-3">
                       <Image
                         src={images[currentIndex].imageUrl!}
                         alt={images[currentIndex].prompt}
-                        fill
-                        className="object-contain p-2"
+                        width={800}
+                        height={600}
+                        className="object-contain max-h-full max-w-full"
+                        style={{ 
+                          maxHeight: '100%', 
+                          maxWidth: '100%',
+                          width: 'auto',
+                          height: 'auto'
+                        }}
                         unoptimized
                         onError={(e) => {
                           console.error('Image failed to load:', images[currentIndex].imageUrl);
